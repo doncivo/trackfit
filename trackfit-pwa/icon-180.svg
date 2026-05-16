@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <rect width="180" height="180" rx="40" fill="#07090d"/>
+  <rect x="8" y="8" width="164" height="164" rx="32" fill="#0d1117"/>
+  <text x="90" y="100" font-size="90" text-anchor="middle" dominant-baseline="middle" font-family="system-ui">⚡</text>
+  <text x="90" y="155" font-size="18" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" fill="#00e676" letter-spacing="2">TRACKFIT</text>
+</svg>

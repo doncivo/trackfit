@@ -1,0 +1,28 @@
+{
+  "name": "TrackFit BroSplit",
+  "short_name": "TrackFit",
+  "description": "Programme de recomposition corporelle 12 semaines",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#07090d",
+  "theme_color": "#07090d",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "/icon-180.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "fitness", "sports"],
+  "screenshots": []
+}
