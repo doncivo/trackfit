@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#07090d">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -10,10 +10,14 @@
   <meta name="apple-mobile-web-app-title" content="TrackFit">
   <meta name="format-detection" content="telephone=no">
   <title>TrackFit</title>
-  <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/icon-180.svg">
-  <link rel="apple-touch-icon" sizes="180x180" href="/icon-180.svg">
-  <link rel="apple-touch-icon" sizes="152x152" href="/icon-180.svg">
+  <!-- iOS icon -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj4KICA8cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjMDcwOTBkIi8+CiAgPHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjE2MCIgcng9IjMyIiBmaWxsPSIjMGQxMTE3Ii8+CiAgPHRleHQgeD0iNTAlIiB5PSI1OCUiIGZvbnQtc2l6ZT0iOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWkiPuKaoTwvdGV4dD4KICA8dGV4dCB4PSI1MCUiIHk9Ijg4JSIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMDBlNjc2IiBsZXR0ZXItc3BhY2luZz0iMiI+VFJBQ0tGSVQ8L3RleHQ+Cjwvc3ZnPg==">
+  <link rel="apple-touch-icon" sizes="152x152" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj4KICA8cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjMDcwOTBkIi8+CiAgPHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjE2MCIgcng9IjMyIiBmaWxsPSIjMGQxMTE3Ii8+CiAgPHRleHQgeD0iNTAlIiB5PSI1OCUiIGZvbnQtc2l6ZT0iOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWkiPuKaoTwvdGV4dD4KICA8dGV4dCB4PSI1MCUiIHk9Ijg4JSIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMDBlNjc2IiBsZXR0ZXItc3BhY2luZz0iMiI+VFJBQ0tGSVQ8L3RleHQ+Cjwvc3ZnPg==">
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj4KICA8cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjMDcwOTBkIi8+CiAgPHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjE2MCIgcng9IjMyIiBmaWxsPSIjMGQxMTE3Ii8+CiAgPHRleHQgeD0iNTAlIiB5PSI1OCUiIGZvbnQtc2l6ZT0iOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWkiPuKaoTwvdGV4dD4KICA8dGV4dCB4PSI1MCUiIHk9Ijg4JSIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMDBlNjc2IiBsZXR0ZXItc3BhY2luZz0iMiI+VFJBQ0tGSVQ8L3RleHQ+Cjwvc3ZnPg==">
+  <!-- iOS splash screens -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Manifest (inline data URI — works on iOS Safari) -->
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22TrackFit%22%2C%22short_name%22%3A%22TrackFit%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%2307090d%22%2C%22theme_color%22%3A%22%2307090d%22%7D">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -69,7 +73,8 @@ body {
   background: var(--bg); color: var(--t1);
   font-family: var(--fb); font-size: 1rem;
   line-height: 1.5; min-height: 100vh;
-  display: flex; overflow-x: hidden;
+  display: flex;
+  /* overflow-x: hidden removed — blocks pinch zoom on iOS */
 }
 * { scrollbar-width: thin; scrollbar-color: var(--border2) transparent; }
 input, select, textarea, button { font-family: inherit; font-size: .9rem; }
@@ -553,8 +558,35 @@ tr:hover td { background: var(--s2); }
   margin-bottom: .4rem; flex-wrap: wrap; }
 
 /* ═══════════════════════════════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE — fluid layout for all screen sizes
 ═══════════════════════════════════════════════════════════ */
+
+/* ── Fluid base: clamp font sizes ── */
+:root {
+  --fz-base: clamp(13px, 2.2vw, 16px);
+  --fz-sm:   clamp(11px, 1.8vw, 13px);
+  --fz-h1:   clamp(1.4rem, 5vw, 2rem);
+  --fz-card: clamp(12px, 2vw, 15px);
+}
+html { font-size: var(--fz-base); }
+
+/* ── Desktop large (>1200px) ── */
+@media(min-width:1200px){
+  #main { max-width: 1200px; padding: 2rem 2.5rem; }
+  .grid.g2 { grid-template-columns: repeat(2,1fr); }
+  .grid.g4 { grid-template-columns: repeat(4,1fr); }
+  .metric-row { grid-template-columns: repeat(4,1fr); }
+  .sc-val { font-size: 2.2rem; }
+  .card { padding: 1.2rem 1.4rem; }
+}
+
+/* ── Desktop medium (900–1200px) ── */
+@media(min-width:900px) and (max-width:1199px){
+  .grid.g4 { grid-template-columns: repeat(2,1fr); }
+  .metric-row { grid-template-columns: repeat(4,1fr); }
+}
+
+/* ── Tablet portrait / large phone (641–900px) ── */
 @media(max-width:900px){
   :root { --sidebar-w: 54px; }
   .sb-logo-title span { display: none; }
@@ -564,24 +596,234 @@ tr:hover td { background: var(--s2); }
   .sb-item span:not(.sb-icon) { display: none; }
   .sb-item { justify-content: center; padding: .7rem; }
   .sb-item .sb-badge-dot { right: 6px; top: 6px; }
-  #main { padding: 1rem; }
-  .g4 { grid-template-columns: repeat(2,1fr); }
-  .metric-row { grid-template-columns: repeat(2,1fr); }
+  #main { padding: 1rem 1.1rem; }
+  .grid.g4 { grid-template-columns: repeat(2,1fr); }
+  .metric-row { grid-template-columns: repeat(4,1fr); }
+  .fr4 { grid-template-columns: repeat(2,1fr); }
 }
+
+/* ── Mobile (≤640px) ── */
+/* ── iPhone 16 Pro Max + large phones (390–430px) ── */
+@media(min-width:390px) and (max-width:640px){
+  :root { --fz-base: 15px; }
+
+  /* 2-column metric row fits nicely */
+  .metric-row { grid-template-columns: repeat(2,1fr); gap: .5rem; }
+  .metric-val { font-size: 1.6rem; }
+
+  /* Larger serie inputs — more room */
+  .serie-row input { height: 52px !important; font-size: 22px !important; }
+  .s-btn { width: 56px !important; height: 56px !important; font-size: 1.4rem !important; }
+  .charge-btn { width: 44px; height: 44px; font-size: 1.2rem; }
+
+  /* Cards breathe more */
+  .card { padding: .9rem 1rem; }
+
+  /* Bigger tap targets */
+  .cl-item { min-height: 50px; font-size: .88rem; }
+  .ql-btn { min-height: 48px; font-size: .85rem; padding: .5rem .9rem; }
+  .bn-item .bn-icon { font-size: 1.35rem; }
+  .tab { font-size: .84rem; padding: .5rem .85rem; }
+
+  /* Slightly bigger heading */
+  .ph h1 { font-size: 1.8rem; }
+
+  /* Hero card */
+  .hero-card-title { font-size: 1.25rem; }
+  .hero-exo-row { font-size: .82rem; padding: .25rem 0; }
+
+  /* 2-col grids work well at 430px */
+  .grid.g2 { grid-template-columns: repeat(2,1fr) !important; }
+  .fr2 { grid-template-columns: repeat(2,1fr) !important; }
+}
+
 @media(max-width:640px){
-  :root { --sidebar-w: 0px; }
+  :root {
+    --sidebar-w: 0px;
+    --r: 12px; --r2: 8px;
+  }
   #sidebar { display: none; }
   #bottom-nav { display: flex; }
-  #main { margin-left: 0; padding: .9rem .9rem calc(var(--bottomnav-h) + .9rem); }
-  .g2,.g3,.g4 { grid-template-columns: 1fr; }
-  .fr2,.fr3,.fr4 { grid-template-columns: 1fr; }
-  .metric-row { grid-template-columns: repeat(2,1fr); }
-  .ph { flex-direction: column; }
-  .ph-actions { width: 100%; }
-  .sess-sticky { margin: -.9rem -.9rem .9rem; }
-  .ph h1 { font-size: 1.5rem; }
-  #toasts { right: .5rem; left: .5rem; bottom: calc(var(--bottomnav-h) + .5rem); }
+  #main {
+    margin-left: 0;
+    padding: .75rem .75rem calc(var(--bottomnav-h) + var(--safe-bot) + .75rem);
+  }
+
+  /* Grids → single column */
+  .grid.g2, .grid.g3, .grid.g4 { grid-template-columns: 1fr; }
+  .fr2, .fr3 { grid-template-columns: 1fr 1fr; }
+  .fr4 { grid-template-columns: 1fr 1fr; }
+
+  /* Metric row stays 2×2 */
+  .metric-row { grid-template-columns: repeat(2,1fr); gap: .4rem; }
+  .metric { padding: .5rem .55rem; }
+  .metric-val { font-size: 1.3rem; }
+  .metric-label { font-size: .58rem; }
+
+  /* Page header */
+  .ph { flex-direction: column; gap: .5rem; margin-bottom: .9rem; }
+  .ph h1 { font-size: var(--fz-h1); }
+  .ph-actions { width: 100%; flex-wrap: wrap; }
+
+  /* Cards */
+  .card { padding: .75rem .85rem; font-size: var(--fz-card); }
+  .card-title { font-size: .85rem; margin-bottom: .6rem; }
+
+  /* Stat cards */
+  .sc { padding: .6rem .75rem; }
+  .sc-val { font-size: 1.5rem; }
+  .sc-label { font-size: .6rem; }
+
+  /* Tabs — horizontal scroll, no wrap */
+  .tabs { gap: 0; padding-bottom: 1px; }
+  .tab { padding: .45rem .7rem; font-size: .78rem; }
+
+  /* Séance sticky */
+  .sess-sticky {
+    margin: -.75rem -.75rem .75rem;
+    padding: .4rem .75rem;
+    gap: .4rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .sess-sticky-name { font-size: .88rem; min-width: 80px; }
+  .sess-sticky-info { gap: .4rem; flex-wrap: nowrap; }
+  .sess-progress-bar { width: 40px; }
+
+  /* Exercise cards */
+  .exo-card { padding: .65rem .75rem; margin-bottom: .55rem; }
+  .exo-name { font-size: .95rem; }
+  .exo-meta { gap: .25rem; }
+  .exo-meta span { font-size: .68rem; }
+  .exo-targets .chip { font-size: .68rem; padding: .14rem .35rem; }
+
+  /* Serie row — optimized for thumb use */
+  .serie-row { padding: .5rem .4rem !important; gap: .3rem !important; }
+  .serie-row input { height: 48px !important; font-size: 20px !important; }
+  .charge-btn { width: 40px; height: 40px; font-size: 1.1rem; }
+  .s-btn { width: 52px !important; height: 52px !important; font-size: 1.3rem !important; }
+  .sn { font-size: .75rem; min-width: 18px; }
+
+  /* Forms */
+  input, select, textarea { font-size: 16px !important; }
+  label { font-size: .68rem; }
+
+  /* Tables — scroll horizontally */
+  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { min-width: 500px; }
+  th, td { padding: .4rem .55rem; font-size: .75rem; white-space: nowrap; }
+
+  /* Toasts */
+  #toasts {
+    right: .5rem; left: .5rem;
+    bottom: calc(var(--bottomnav-h) + var(--safe-bot) + .5rem);
+  }
+  .toast { font-size: .8rem; }
+
+  /* Charts — smaller height on small screens */
+  .cbox { height: 180px; }
+  .cbox-lg { height: 220px; }
+
+  /* Quick log bar — horizontal scroll */
+  .quick-log-bar { flex-wrap: nowrap; overflow-x: auto; padding-bottom: .3rem; gap: .4rem; }
+  .ql-btn { white-space: nowrap; flex-shrink: 0; font-size: .78rem; padding: .4rem .7rem; }
+
+  /* Checklist */
+  .cl-item { font-size: .8rem; padding: .45rem .6rem; }
+
+  /* Buttons */
+  .btn { font-size: .82rem; padding: .48rem .85rem; }
+  .btn-lg { font-size: .9rem; padding: .58rem 1.2rem; }
+  .btn-fw { min-height: 48px; }
+
+  /* Hero card */
+  .hero-card { padding: .9rem 1rem; }
+  .hero-card-title { font-size: 1.1rem; }
+  .hero-exo-row { font-size: .75rem; }
+
+  /* Alerts */
+  .alert { font-size: .78rem; padding: .55rem .75rem; }
+
+  /* Warmup */
+  .warmup-row { font-size: .75rem; }
+
+  /* Save bar */
+  .save-bar { padding: .55rem .75rem; margin: .75rem -.75rem -.75rem; }
+
+  /* Obj banner */
+  .obj-banner { padding: .65rem .8rem; }
+  .obj-m span { font-size: .72rem; }
+
+  /* Calendar */
+  .cal-day { font-size: .62rem; }
+  .cal-day-num { font-size: .72rem; }
+
+  /* Feedback card */
+  .feedback-card { padding: .9rem 1rem; }
+  .feedback-item { font-size: .78rem; }
+
+  /* Config tabs — scroll */
+  .config-tabs .tabs { overflow-x: auto; }
+
+  /* Setup */
+  .setup-wrap { padding-top: .5rem; }
 }
+
+/* ── Small phones (≤375px — iPhone SE, older) ── */
+@media(max-width:375px){
+  :root { --fz-base: 13px; }
+  .metric-val { font-size: 1.2rem; }
+  .serie-row input { height: 44px !important; font-size: 18px !important; }
+  .s-btn { width: 46px !important; height: 46px !important; }
+  .charge-btn { width: 36px; height: 36px; }
+  .tab { padding: .4rem .55rem; font-size: .72rem; }
+  .card { padding: .65rem .7rem; }
+  .ph h1 { font-size: 1.3rem; }
+  .bn-item { font-size: .58rem; }
+  .bn-item .bn-icon { font-size: 1.1rem; }
+  table { min-width: 420px; }
+  .sc-val { font-size: 1.35rem; }
+}
+
+/* ── Landscape mobile ── */
+@media(max-width:812px) and (orientation:landscape){
+  #bottom-nav { display: none; }
+  #sidebar { display: flex; width: 54px; }
+  :root { --sidebar-w: 54px; }
+  .sb-logo-title span, .sb-group, .sb-item span:not(.sb-icon) { display: none; }
+  .sb-item { justify-content: center; padding: .5rem; }
+  #main { margin-left: 54px; padding: .6rem .8rem 1rem; }
+  .cbox { height: 150px; }
+  .cbox-lg { height: 180px; }
+  .serie-row input { height: 40px !important; }
+  .s-btn { width: 44px !important; height: 44px !important; }
+  .exo-card { padding: .55rem .65rem; margin-bottom: .45rem; }
+}
+
+/* ── iPad / tablet (768px+, standalone) ── */
+@media(min-width:768px) and (max-width:1024px){
+  #bottom-nav { display: none; }
+  #sidebar { display: flex; }
+  :root { --sidebar-w: 220px; }
+  .sb-logo-title span { display: inline; }
+  .sb-group { display: block; }
+  .sb-item span:not(.sb-icon) { display: inline; }
+  .metric-row { grid-template-columns: repeat(4,1fr); }
+  .grid.g2 { grid-template-columns: repeat(2,1fr); }
+  .fr2 { grid-template-columns: repeat(2,1fr); }
+  .fr3 { grid-template-columns: repeat(3,1fr); }
+  .fr4 { grid-template-columns: repeat(4,1fr); }
+}
+
+/* ── Zoom & Touch Actions ── */
+button, a, .btn, .tab, .bn-item, .sb-item,
+.charge-btn, .s-btn, .cl-item, .ql-btn, .metric {
+  touch-action: manipulation; /* fast tap, no double-tap zoom */
+}
+#main, #app, .card, .exo-card, .serie-grid {
+  touch-action: pan-x pan-y pinch-zoom; /* allow pinch zoom */
+}
+
 </style>
 </head>
 <body>
@@ -619,7 +861,7 @@ tr:hover td { background: var(--s2); }
   <div class="bn-item" data-p="config"><div class="bn-icon">⚙️</div><span>Config</span></div>
 </div>
 
-<main id="main"><div id="app"></div></main>
+<main id="main"><div id="app" style="width:100%;max-width:100%;"></div></main>
 <div id="toasts"></div>
 
 <!-- iOS Install Banner -->
@@ -1040,6 +1282,95 @@ const C = {
     return{ffmi:Math.round(ffmi*10)/10, norm:Math.round(norm*10)/10, lbm:Math.round(lbm*10)/10};
   },
 
+  // Weekly averages for macros
+  weeklyMacros(dLogs, startDate, w){
+    const ws=this.weekStart(startDate,w);
+    const we=new Date(ws); we.setDate(we.getDate()+6);
+    const logs=dLogs.filter(l=>{const d=new Date(l.date);return d>=ws&&d<=we;});
+    if(!logs.length) return null;
+    const avg=k=>Math.round(logs.filter(l=>l[k]).reduce((a,l)=>a+(l[k]||0),0)/Math.max(1,logs.filter(l=>l[k]).length));
+    return {
+      cal:avg('calories'), prot:avg('proteines'),
+      gluc:avg('glucides'), lip:avg('lipides'),
+      days:logs.length
+    };
+  },
+
+  // Charge compliance: compare realised vs target
+  chargeCompliance(tLogs, dLogs, cfg, refs, week){
+    if(!refs||!week) return null;
+    const ws=this.weekStart(cfg.startDate,week);
+    const we=new Date(ws); we.setDate(we.getDate()+6);
+    const wLogs=tLogs.filter(l=>{const d=new Date(l.date);return d>=ws&&d<=we;});
+    const results=[];
+    wLogs.forEach(l=>{
+      const ref=refs[l.exercice];
+      if(!ref?.charge||!l.charge_max) return;
+      const target=Math.round(ref.charge*getObj(week).multi*2)/2;
+      const pct=Math.round(l.charge_max/target*100);
+      results.push({exo:l.exercice, target, realised:l.charge_max, pct, ok:pct>=90});
+    });
+    return results;
+  },
+
+  // Overreaching detection
+  overreachingAlert(tLogs, dLogs, startDate){
+    const recent=dLogs.filter(l=>{
+      const d=new Date(l.date);
+      const cutoff=new Date(); cutoff.setDate(cutoff.getDate()-5);
+      return d>=cutoff;
+    });
+    if(recent.length<3) return null;
+    const avgRPE=tLogs.filter(l=>{
+      const d=new Date(l.date);
+      const cutoff=new Date(); cutoff.setDate(cutoff.getDate()-5);
+      return d>=cutoff&&l.rpe;
+    });
+    const rpeAvg=avgRPE.length?avgRPE.reduce((a,l)=>a+(l.rpe||0),0)/avgRPE.length:0;
+    const sleepAvg=recent.filter(l=>l.sommeil).reduce((a,l)=>a+(l.sommeil||0),0)/Math.max(1,recent.filter(l=>l.sommeil).length);
+    const domsAvg=recent.filter(l=>l.doms_haut||l.doms_bas).reduce((a,l)=>a+((l.doms_haut||0)+(l.doms_bas||0))/2,0)/Math.max(1,recent.filter(l=>l.doms_haut||l.doms_bas).length);
+    const score=(rpeAvg>8?2:0)+(sleepAvg<6&&sleepAvg>0?2:sleepAvg<7&&sleepAvg>0?1:0)+(domsAvg>2?1:0);
+    if(score>=3) return {type:'warn', msg:`⚠️ Signes de surmenage : RPE ${rpeAvg.toFixed(1)}/10, sommeil ${sleepAvg.toFixed(1)}h, DOMS élevés. Réduis le volume cette semaine.`};
+    if(score>=2) return {type:'info', msg:`⚡ Récupération limite : surveille ton énergie les 2 prochains jours.`};
+    return null;
+  },
+
+  // Sleep/energy vs performance correlation
+  corrSleepPerf(dLogs, tLogs){
+    const pairs=[];
+    dLogs.forEach(dl=>{
+      if(!dl.sommeil&&!dl.energie) return;
+      const sessionLogs=tLogs.filter(l=>l.date===dl.date&&l.volume_total);
+      if(!sessionLogs.length) return;
+      const vol=sessionLogs.reduce((a,l)=>a+(l.volume_total||0),0);
+      pairs.push({date:dl.date, sommeil:dl.sommeil||0, energie:dl.energie||0, vol, rpe:sessionLogs[0]?.rpe||0});
+    });
+    return pairs.sort((a,b)=>a.date.localeCompare(b.date));
+  },
+
+  // Injury trend (shoulder pain)
+  injuryTrend(dLogs){
+    return dLogs.filter(l=>l.douleur_epaule>0).sort((a,b)=>a.date.localeCompare(b.date))
+      .map(l=>({date:l.date, val:l.douleur_epaule, semaine:l.semaine}));
+  },
+
+  // Recomposition curve: weight + bf + lean mass
+  recompoCurve(ms, dLogs){
+    const byWeek={};
+    // From measurements
+    ms.forEach(m=>{ byWeek[m.semaine]={w:m.semaine, poids:m.poids_moyen_7j, bf:m.body_fat, taille:m.tour_taille_nombril}; });
+    // Fill poids from daily logs if missing
+    for(let w=1;w<=12;w++){
+      if(!byWeek[w]) byWeek[w]={w};
+      // would need startDate to compute weekStart here, skip for now
+    }
+    return Object.values(byWeek).filter(v=>v.poids||v.bf).sort((a,b)=>a.w-b.w).map(v=>{
+      const lbm=(v.poids&&v.bf!=null)?Math.round(v.poids*(1-v.bf/100)*10)/10:null;
+      const fat=(v.poids&&v.bf!=null)?Math.round(v.poids*v.bf/100*10)/10:null;
+      return {...v, lbm, fat};
+    });
+  },
+
   navyBF(sexe, taille_cm, cou_cm, taille_cm2, hanches_cm){
     if(!taille_cm||!cou_cm||!taille_cm2) return null;
     const h=taille_cm, neck=cou_cm, waist=taille_cm2;
@@ -1214,7 +1545,7 @@ const ExoTimers = {
             ↺ Reset
           </button>
         </div>
-        ${t.state==='done'?'<span style="color:var(--accent);font-weight:700;font-size:.85rem;">✅ Go !</span>':''}
+        ${t.state==='done'?'<span style="color:var(--accent);font-weight:800;font-size:1rem;animation:pr-pop .3s ease;">✅ Go — lance ta série !</span>':''}
       </div>
     `;
   },
@@ -1355,24 +1686,42 @@ function renderExoCard(exo,ei,w,refs,tLogs){
         💡 ${exo.cues||'—'}${exo.alt?' — Alt : '+exo.alt:''}
       </div>
       <div class="serie-grid">
-        ${sets.map((s,si)=>`
-          <div class="serie-row ${s.done?'sr-done':''}" id="sr-${ei}-${si}">
-            <span class="sn">S${si+1}</span>
-            <div class="s-inp" style="flex-direction:column;gap:.15rem;">
-              <div style="display:flex;gap:.35rem;">
-                <input type="number" id="r-${ei}-${si}" value="${s.reps||''}" placeholder="${rt||'reps'}"
-                  min="1" max="50" step="1" onchange="upS(${ei},${si},'reps',+this.value)">
-                <input type="number" id="c-${ei}-${si}" value="${s.charge!==''?s.charge:''}" placeholder="${ct||lastCharge||'kg'}"
-                  min="0" max="500" step="0.5" onchange="upS(${ei},${si},'charge',+this.value)">
+        ${sets.map((s,si)=>{
+          const isNext=!s.done&&sets.slice(0,si).every(x=>x.done);
+          return `
+          <div class="serie-row ${s.done?'sr-done':''} ${isNext?'serie-next':''}" id="sr-${ei}-${si}">
+            <span class="sn" style="font-size:.85rem;font-weight:700;color:${s.done?'var(--accent)':'var(--t2)'};">S${si+1}</span>
+
+            <div class="reps-input-wrap">
+              <div class="reps-val">${s.reps||'—'}</div>
+              <input type="number" inputmode="numeric" pattern="[0-9]*" id="r-${ei}-${si}"
+                value="${s.reps||''}" placeholder="${rt||'?'}"
+                min="1" max="50" step="1"
+                onfocus="this.select()"
+                oninput="upS(${ei},${si},'reps',+this.value);this.previousElementSibling.textContent=this.value||'—'"
+                style="font-size:18px;text-align:center;height:44px;padding:.3rem;">
+            </div>
+
+            <div class="charge-input-wrap">
+              <div class="charge-val">${s.charge||ct||lastCharge||'—'}<span style="font-size:.65rem;color:var(--t3);">kg</span></div>
+              <div class="charge-btns" style="width:100%;">
+                <button class="charge-btn minus" onclick="adjCharge(${ei},${si},-2.5)" title="-2.5kg">−</button>
+                <input type="number" inputmode="decimal" id="c-${ei}-${si}"
+                  value="${s.charge!==''?s.charge:''}" placeholder="${ct||lastCharge||'kg'}"
+                  min="0" max="500" step="0.5"
+                  onfocus="this.select()"
+                  oninput="upS(${ei},${si},'charge',+this.value);this.closest('.charge-input-wrap').querySelector('.charge-val').innerHTML=(this.value||'${ct||lastCharge||'—'}')+'<span style=\'font-size:.65rem;color:var(--t3);\'>kg</span>'"
+                  style="font-size:18px;text-align:center;height:44px;padding:.3rem;min-width:60px;flex:1;">
+                <button class="charge-btn" onclick="adjCharge(${ei},${si},2.5)" title="+2.5kg">+</button>
               </div>
-              ${s.done||S.params[`note_${ei}_${si}`]?`<input class="serie-note" type="text" id="n-${ei}-${si}" value="${s.note||''}" placeholder="note…" onchange="upS(${ei},${si},'note',this.value)">`:''}
             </div>
-            <div style="display:flex;flex-direction:column;gap:.2rem;align-items:center;">
-              <button class="s-btn" onclick="valS(${ei},${si},${exo.rest})" title="Valider [Entrée]">${s.done?'✓':'›'}</button>
-              <button onclick="S.params['note_${ei}_${si}']=!S.params['note_${ei}_${si}'];const c2=document.getElementById('ec-${ei}');if(c2)c2.outerHTML=renderExoCard(getSessions()[S.sess.si||0].exos[${ei}],${ei},${S.sess.w||0},null,S._tLogsCache)" style="background:none;border:none;color:var(--t3);font-size:.65rem;cursor:pointer;padding:0;" title="Ajouter une note">📝</button>
-            </div>
+
+            <button class="s-btn ${s.done?'validated':''}" onclick="valS(${ei},${si},${exo.rest})" title="Valider">
+              ${s.done?'✓':'›'}
+            </button>
           </div>
-        `).join('')}
+          ${isNext&&!s.done?'<div class="next-series-indicator">▼ Série suivante</div>':''}
+        `}).join('')}
       </div>
       <div class="exo-rest-wrap">
         <div id="exo-rest-${ei}" data-rest="${exo.rest}">
@@ -1391,6 +1740,22 @@ function renderExoCard(exo,ei,w,refs,tLogs){
       `:''}
       ${exo.fin?`<div class="alert a-info" style="font-size:.76rem;margin-top:.5rem;padding:.35rem .7rem;margin-bottom:0;">🔥 Finisher : ${exo.fin}</div>`:''}
     </div>`;
+}
+
+function adjCharge(ei,si,delta){
+  const input=document.getElementById(`c-${ei}-${si}`);
+  if(!input) return;
+  const cur=parseFloat(input.value)||S.sess.sets[ei]?.[si]?.charge||0;
+  const newVal=Math.max(0,Math.round((cur+delta)*2)/2); // round to 0.5
+  input.value=newVal;
+  upS(ei,si,'charge',newVal);
+  // Update display
+  const wrap=input.closest('.charge-input-wrap');
+  if(wrap){
+    const disp=wrap.querySelector('.charge-val');
+    if(disp) disp.innerHTML=newVal+'<span style="font-size:.65rem;color:var(--t3);">kg</span>';
+  }
+  haptic([20]);
 }
 
 let _draftTimer=null;
@@ -1429,8 +1794,24 @@ async function valS(ei,si,rest){
   if(sets[si].done){
     const restSecs=sess.exos[ei].rest||90;
     ExoTimers.start(ei, restSecs);
+    // Auto-scroll to next incomplete series or next exercise
+    setTimeout(()=>{
+      // Find next incomplete series in same exercise
+      const nextSr=document.getElementById(`sr-${ei}-${si+1}`);
+      if(nextSr){
+        nextSr.scrollIntoView({behavior:'smooth',block:'center'});
+        // Auto-focus reps input of next series
+        setTimeout(()=>{ document.getElementById(`r-${ei}-${si+1}`)?.focus(); },300);
+      } else {
+        // All series done — scroll to next exercise
+        const nextExo=document.getElementById(`ec-${ei+1}`);
+        if(nextExo){
+          nextExo.scrollIntoView({behavior:'smooth',block:'start'});
+          setTimeout(()=>{ document.getElementById(`r-${ei+1}-0`)?.focus(); },300);
+        }
+      }
+    },150);
   } else {
-    // If un-validating, clear timer
     ExoTimers.reset(ei, sess.exos[ei].rest||90);
   }
   if(ExoTimers._timers[ei]) ExoTimers._render(ei);
@@ -1585,9 +1966,9 @@ function renderSeanceLibre(selW, tLogs, refs){
       ${libExos.map((exo,ei)=>`
         <div class="libre-exo-row" style="padding:.4rem;background:var(--s2);border-radius:var(--r2);margin-bottom:.4rem;">
           <input type="text" value="${exo.nom}" style="flex:1;min-width:140px;" onchange="S.sess.libreExos[${ei}].nom=this.value">
-          <input type="number" value="${exo.charge||''}" placeholder="kg" style="width:70px;" onchange="S.sess.libreExos[${ei}].charge=+this.value">
-          <input type="number" value="${exo.reps||''}" placeholder="reps" style="width:60px;" onchange="S.sess.libreExos[${ei}].reps=+this.value">
-          <input type="number" value="${exo.sets||3}" placeholder="x" style="width:55px;" onchange="S.sess.libreExos[${ei}].sets=+this.value">
+          <input type="number" inputmode="numeric" value="${exo.charge||''}" placeholder="kg" style="width:70px;" onchange="S.sess.libreExos[${ei}].charge=+this.value">
+          <input type="number" inputmode="numeric" value="${exo.reps||''}" placeholder="reps" style="width:60px;" onchange="S.sess.libreExos[${ei}].reps=+this.value">
+          <input type="number" inputmode="numeric" value="${exo.sets||3}" placeholder="x" style="width:55px;" onchange="S.sess.libreExos[${ei}].sets=+this.value">
           <button class="btn btn-sm" style="background:var(--red-d);color:var(--red);" onclick="S.sess.libreExos.splice(${ei},1);render()">✕</button>
         </div>
       `).join('')}
@@ -1670,7 +2051,7 @@ async function updKcal(){
   if(el) el.value=aw||est||'';
 }
 
-async function saveDLog(){
+async function saveDLog(silent=false){
   const cfg=await DB.cfg();
   const date=S.params.qd||C.today();
   const w=C.weekOf(cfg.startDate);
@@ -1726,8 +2107,7 @@ async function saveDLog(){
     createdAt:existing.createdAt||new Date().toISOString()
   };
   await DB.saveDLog(merged);
-  toast('✅ Suivi enregistré');
-  suivi();
+  if(!silent){ toast('✅ Suivi enregistré'); suivi(); }
 }
 
 function calcTDEE(){
@@ -1929,19 +2309,19 @@ async function editseance(){
       <div class="fr4" style="gap:.5rem;margin-bottom:.6rem;">
         <div class="fg">
           <label>Séries de base</label>
-          <input type="number" value="${exo.sb||3}" min="1" max="8" onchange="updExo(${si},${ei},'sb',+this.value)">
+          <input type="number" inputmode="numeric" value="${exo.sb||3}" min="1" max="8" onchange="updExo(${si},${ei},'sb',+this.value)">
         </div>
         <div class="fg">
           <label>Reps min</label>
-          <input type="number" value="${exo.ri||8}" min="1" max="50" onchange="updExo(${si},${ei},'ri',+this.value)">
+          <input type="number" inputmode="numeric" value="${exo.ri||8}" min="1" max="50" onchange="updExo(${si},${ei},'ri',+this.value)">
         </div>
         <div class="fg">
           <label>Reps max</label>
-          <input type="number" value="${exo.ra||12}" min="1" max="99" onchange="updExo(${si},${ei},'ra',+this.value)">
+          <input type="number" inputmode="numeric" value="${exo.ra||12}" min="1" max="99" onchange="updExo(${si},${ei},'ra',+this.value)">
         </div>
         <div class="fg">
           <label>Repos (sec)</label>
-          <input type="number" value="${exo.rest||90}" min="30" max="300" step="15" onchange="updExo(${si},${ei},'rest',+this.value)">
+          <input type="number" inputmode="numeric" value="${exo.rest||90}" min="30" max="300" step="15" onchange="updExo(${si},${ei},'rest',+this.value)">
         </div>
       </div>
 
@@ -2089,9 +2469,16 @@ async function resetSessions(){
 // ═══════════════════════════════════════════════════════════
 
 function nav(page, params={}){
+  if(S.page && S.page!==page) S.prevPage=S.page;
   S.page=page; S.params={...S.params,...params};
+  localStorage.setItem('lastPage', page);
   _updateNav();
   render();
+}
+
+function navBack(){
+  if(S.prevPage) nav(S.prevPage);
+  else nav('home');
 }
 
 function _updateNav(){
@@ -2137,6 +2524,9 @@ async function home(){
   S.page='home';
   const [cfg,refs,dLogs,tLogs,ms]=await Promise.all([DB.cfg(),DB.refs(),DB.dLogs(),DB.tLogs(),DB.meas()]);
   S._lastTLogs=tLogs;
+  const overreach=C.overreachingAlert(tLogs,dLogs,cfg.startDate);
+  const compliance=tLogs.length?C.chargeCompliance(tLogs,dLogs,cfg,refs,w):null;
+  const lowCompliance=compliance?.filter(r=>!r.ok&&r.pct<80)||[];
   const w=C.weekOf(cfg.startDate);
   const ph=getPhase(w); const obj=getObj(w);
   const today=C.today();
@@ -2174,7 +2564,7 @@ async function home(){
       </div>
     </div>
 
-    <div class="quick-log-bar">
+    <div class="quick-log-bar" style="overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
       <div class="ql-btn" onclick="openQL('poids')">⚖️ Poids</div>
       <div class="ql-btn" onclick="openQL('calories')">🍽 Calories</div>
       <div class="ql-btn" onclick="openQL('pas')">👟 Pas</div>
@@ -2182,8 +2572,10 @@ async function home(){
       <div class="ql-btn" onclick="openQL('sommeil')">💤 Sommeil</div>
     </div>
 
+    ${overreach?`<div class="alert a-${overreach.type}">${overreach.msg}</div>`:''}
     ${deload?`<div class="alert a-warn">💤 ${deload.msg}</div>`:''}
     ${rd!==null&&rd<50?`<div class="alert a-warn">⚠️ <strong>Readiness faible (${rd}/100)</strong> — Adapte ton intensité.</div>`:''}
+    ${lowCompliance.length>0?`<div class="alert a-info">📉 <strong>${lowCompliance.length} exercice(s) sous la cible</strong> : ${lowCompliance.slice(0,3).map(r=>r.exo+' ('+r.pct+'%)').join(', ')}. Vérifie tes charges.</div>`:''}
     ${reco&&reco.type==='warn'?`<div class="alert a-warn">⚡ ${reco.msg}</div>`:''}
     ${reco&&reco.type==='info'?`<div class="alert a-info">⚡ ${reco.msg}</div>`:''}
     ${reco&&reco.type==='ok'?`<div class="alert a-ok">✓ ${reco.msg}</div>`:''}
@@ -2376,8 +2768,8 @@ async function seance(){
           <span style="font-size:.75rem;color:var(--t2);">${doneExos}/${totalExos}</span>
           <div class="sess-progress-bar"><div class="sess-progress-fill" style="width:${progPct}%;"></div></div>
         </div>`:''}
-        <select style="width:52px;font-size:.75rem;padding:.2rem .3rem;" onchange="S.params.w=+this.value;S.sess.w=null;render()">${wOpts}</select>
-        <select style="width:140px;font-size:.75rem;padding:.2rem .3rem;" onchange="S.params.si=this.value==='libre'?'libre':+this.value;S.sess.si=null;render()">
+        <select style="width:48px;font-size:.75rem;padding:.2rem .2rem;min-width:0;" onchange="S.params.w=+this.value;S.sess.w=null;render()">${wOpts}</select>
+        <select style="width:120px;font-size:.75rem;padding:.2rem .2rem;min-width:0;" onchange="S.params.si=this.value==='libre'?'libre':+this.value;S.sess.si=null;render()">
           ${sOpts}
           <option value="libre" ${isLibre?'selected':''}>🆓 Libre</option>
         </select>
@@ -2401,10 +2793,10 @@ async function seance(){
         <div class="card-title">📝 Fin de séance</div>
         <textarea id="s-notes" rows="2" placeholder="Sensations, fatigue, observations…">${S.sess.notes||''}</textarea>
         <div class="fr fr2 mt1" style="margin-top:.7rem;">
-          <div class="fg"><label>Durée (min)</label><input type="number" id="s-duree" value="${S.sess.duree||sess.duree}" min="10" max="300"></div>
+          <div class="fg"><label>Durée (min)</label><input type="number" inputmode="numeric" id="s-duree" value="${S.sess.duree||sess.duree}" min="10" max="300"></div>
           <div class="fg">
             <label>Effort perçu (1–10) ${tip('rpe')}</label>
-            <input type="number" id="s-rpe" value="${S.sess.rpe||''}" min="1" max="10" placeholder="6=facile · 8=dur · 10=max">
+            <input type="number" inputmode="numeric" id="s-rpe" value="${S.sess.rpe||''}" min="1" max="10" placeholder="6=facile · 8=dur · 10=max">
             <div style="font-size:.7rem;color:var(--t2);margin-top:.2rem;">6 = confortable · 8 = difficile · 10 = maximum</div>
           </div>
         </div>
@@ -2421,6 +2813,17 @@ async function seance(){
 
   document.addEventListener('keydown', _seanceKeydown, {once:false});
   setupSwipe('exo-list', ()=>swipeSession(-1), ()=>swipeSession(1));
+  // Auto-focus first empty reps input
+  setTimeout(()=>{
+    const allInputs=document.querySelectorAll('.serie-grid input[type="number" inputmode="numeric"]');
+    for(const inp of allInputs){
+      if(!inp.value&&inp.id.startsWith('r-')){
+        inp.scrollIntoView({behavior:'smooth',block:'center'});
+        inp.focus();
+        break;
+      }
+    }
+  },400);
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -2433,7 +2836,7 @@ async function analyse(){
   const [cfg,tLogs,dLogs]=await Promise.all([DB.cfg(),DB.tLogs(),DB.dLogs()]);
 
   const tabs=`<div class="tabs">
-    ${[['semaine','📊 Semaine'],['exercices','🏆 Exercices'],['historique','📈 Historique'],['calendrier','📅 Calendrier'],['radar','🕸 Radar']].map(([t,l])=>`
+    ${[['semaine','📊 Semaine'],['exercices','🏆 Exercices'],['coach','🏅 Coach'],['recompo','💪 Recompo'],['historique','📈 Historique'],['calendrier','📅 Calendrier'],['radar','🕸 Radar']].map(([t,l])=>`
       <div class="tab ${tab===t?'active':''}" onclick="S.params.at='${t}';analyse()">${l}</div>
     `).join('')}
   </div>`;
@@ -2442,6 +2845,8 @@ async function analyse(){
 
   if(tab==='semaine') await _analyseWeek(ph,tabs,cfg,tLogs,dLogs);
   else if(tab==='exercices') await _analysePerfs(ph,tabs,cfg,tLogs);
+  else if(tab==='coach') await _analyseCoach(ph,tabs,cfg,tLogs,dLogs);
+  else if(tab==='recompo') await _analyseRecompo(ph,tabs,cfg,tLogs,dLogs,ms);
   else if(tab==='calendrier') await _analyseCal(ph,tabs,cfg,tLogs,dLogs);
   else if(tab==='radar') await _analyseRadar(ph,tabs,cfg,tLogs);
   else await _analyseHist(ph,tabs,cfg,tLogs,dLogs);
@@ -2464,7 +2869,7 @@ async function _analyseWeek(ph,tabs,cfg,tLogs,dLogs){
       ${isSunday?'<span class="badge b-g">📅 Bilan du dimanche</span>':''}
     </div>
 
-    <div class="grid g4 mb2">
+    <div class="grid g4 mb2" style="gap:.5rem;">
       <div class="sc ${streak>3?'sc-g':''}">
         <div class="sc-label">🔥 Streak</div>
         <div class="sc-val">${streak}<span class="sc-unit">j</span></div>
@@ -2868,6 +3273,317 @@ async function _analyseRadar(ph,tabs,cfg,tLogs){
   },120);
 }
 
+async function _analyseCoach(ph,tabs,cfg,tLogs,dLogs){
+  const refs=await DB.refs();
+  const w=C.weekOf(cfg.startDate);
+  const overreach=C.overreachingAlert(tLogs,dLogs,cfg.startDate);
+  const compliance=C.chargeCompliance(tLogs,dLogs,cfg,refs,w)||[];
+  const corrData=C.corrSleepPerf(dLogs,tLogs);
+  const injData=C.injuryTrend(dLogs);
+
+  // Macro averages last 4 weeks
+  const macroRows=[];
+  for(let wk=Math.max(1,w-3);wk<=w;wk++){
+    const m=C.weeklyMacros(dLogs,cfg.startDate,wk);
+    if(m) macroRows.push({wk,...m});
+  }
+
+  // Weekly volume trend
+  const volTrend=[];
+  for(let wk=1;wk<=w;wk++){
+    const ws=C.weekStart(cfg.startDate,wk);
+    const we=new Date(ws); we.setDate(we.getDate()+6);
+    const wl=tLogs.filter(l=>{const d=new Date(l.date);return d>=ws&&d<=we;});
+    volTrend.push({wk,vol:Math.round(wl.reduce((a,l)=>a+(l.volume_total||0),0)/1000)/10,sessions:new Set(wl.map(l=>l.date)).size});
+  }
+
+  document.getElementById('app').innerHTML=`${ph}${tabs}
+
+    ${overreach?`<div class="alert a-${overreach.type} mb2">${overreach.msg}</div>`:''}
+
+    <div class="grid g2">
+
+      <div class="card mb2">
+        <div class="card-title">📉 Respect des charges cibles — S${w}</div>
+        ${compliance.length?`
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Exercice</th><th>Cible</th><th>Réalisé</th><th>%</th><th></th></tr></thead>
+            <tbody>
+              ${compliance.map(r=>`<tr>
+                <td style="font-size:.8rem;">${r.exo}</td>
+                <td class="t-m">${r.target}kg</td>
+                <td><strong>${r.realised}kg</strong></td>
+                <td><span style="color:${r.pct>=90?'var(--accent)':r.pct>=75?'var(--orange)':'var(--red)'};font-weight:700;">${r.pct}%</span></td>
+                <td>${r.ok?'✅':'⚠️'}</td>
+              </tr>`).join('')}
+            </tbody>
+          </table></div>
+        `:'<div class="t-m" style="font-size:.82rem;">Pas encore de données pour cette semaine.</div>'}
+      </div>
+
+      <div class="card mb2">
+        <div class="card-title">🍽 Nutrition hebdomadaire</div>
+        ${macroRows.length?`
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Sem.</th><th>Kcal moy.</th><th>Prot.</th><th>Jours loggés</th></tr></thead>
+            <tbody>
+              ${macroRows.map(m=>`<tr>
+                <td>S${m.wk}</td>
+                <td><strong>${m.cal||'—'}</strong></td>
+                <td style="color:${m.prot>=cfg.proteines_cible?'var(--accent)':'var(--orange)'}"><strong>${m.prot||'—'}g</strong></td>
+                <td class="t-m">${m.days}/7</td>
+              </tr>`).join('')}
+            </tbody>
+          </table></div>
+        `:'<div class="t-m" style="font-size:.82rem;">Logge ta nutrition pour voir les moyennes.</div>'}
+      </div>
+
+      <div class="card mb2">
+        <div class="card-title">📊 Volume entraînement par semaine</div>
+        <div class="cbox"><canvas id="vol-chart"></canvas></div>
+      </div>
+
+      <div class="card mb2">
+        <div class="card-title">😴 Corrélation sommeil → volume séance</div>
+        ${corrData.length>=3?`<div class="cbox"><canvas id="corr-chart"></canvas></div>`:'<div class="t-m" style="font-size:.82rem;">Minimum 3 jours de données combinées nécessaires.</div>'}
+      </div>
+
+    </div>
+
+    <div class="card mb2">
+      <div class="card-title">🩺 Suivi blessure épaule</div>
+      ${injData.length?`
+        <div class="cbox" style="height:140px;"><canvas id="inj-chart"></canvas></div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem;">
+          ${injData.slice(-5).map(i=>`<span class="badge ${i.val<=3?'b-g':i.val<=6?'b-o':'b-r'}">S${i.semaine||'?'} : ${i.val}/10</span>`).join('')}
+          <span style="font-size:.75rem;color:var(--t2);align-self:center;">Tendance : ${injData.length>=2?(injData[injData.length-1].val<injData[0].val?'✅ Amélioration':'⚠️ Stable/dégradation'):'—'}</span>
+        </div>
+      `:'<div class="t-m" style="font-size:.82rem;">Aucune douleur épaule enregistrée — parfait !</div>'}
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 Rapport coach — S${w}</div>
+      <div id="coach-report" style="font-size:.84rem;line-height:1.7;color:var(--t1);">
+        ${generateCoachReport(w,tLogs,dLogs,cfg,compliance,macroRows,corrData,injData)}
+      </div>
+    </div>
+  `;
+
+  setTimeout(()=>{
+    // Volume chart
+    const vctx=document.getElementById('vol-chart')?.getContext('2d');
+    if(vctx&&volTrend.length) new Chart(vctx,{type:'bar',
+      data:{labels:volTrend.map(v=>'S'+v.wk),datasets:[
+        {label:'Volume (t)',data:volTrend.map(v=>v.vol),backgroundColor:volTrend.map(v=>v.vol>0?'rgba(0,230,118,.5)':'rgba(255,112,67,.3)'),borderRadius:4},
+        {label:'Séances',data:volTrend.map(v=>v.sessions),type:'line',borderColor:'#42a5f5',tension:.3,yAxisID:'y1',pointRadius:3}
+      ]},options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{labels:{color:'#7a90a8',font:{size:10}}}},
+        scales:{x:{ticks:{color:'#7a90a8'},grid:{color:'#1e2d3d'}},
+          y:{ticks:{color:'#00e676'},grid:{color:'#1e2d3d'},title:{display:true,text:'Tonnage (t)',color:'#7a90a8'}},
+          y1:{ticks:{color:'#42a5f5'},grid:{display:false},position:'right',title:{display:true,text:'Séances',color:'#42a5f5'}}
+        }}});
+
+    // Correlation chart
+    const cctx=document.getElementById('corr-chart')?.getContext('2d');
+    if(cctx&&corrData.length>=3) new Chart(cctx,{type:'scatter',
+      data:{datasets:[
+        {label:'Sommeil → Volume',data:corrData.map(p=>({x:p.sommeil,y:p.vol/1000})),
+          backgroundColor:'rgba(0,230,118,.6)',pointRadius:5},
+        {label:'Énergie → Volume',data:corrData.map(p=>({x:p.energie,y:p.vol/1000})),
+          backgroundColor:'rgba(66,165,245,.6)',pointRadius:5,hidden:true}
+      ]},options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{labels:{color:'#7a90a8',font:{size:10}}}},
+        scales:{x:{ticks:{color:'#7a90a8'},grid:{color:'#1e2d3d'},title:{display:true,text:'Sommeil (h)',color:'#7a90a8'}},
+          y:{ticks:{color:'#7a90a8'},grid:{color:'#1e2d3d'},title:{display:true,text:'Volume (t)',color:'#7a90a8'}}
+        }}});
+
+    // Injury chart
+    const ictx=document.getElementById('inj-chart')?.getContext('2d');
+    if(ictx&&injData.length) new Chart(ictx,{type:'line',
+      data:{labels:injData.map(i=>i.date.slice(5)),
+        datasets:[{label:'Douleur épaule /10',data:injData.map(i=>i.val),
+          borderColor:'#f44336',backgroundColor:'rgba(244,67,54,.08)',
+          tension:.3,fill:true,pointRadius:4}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{x:{ticks:{color:'#7a90a8',maxTicksLimit:8},grid:{color:'#1e2d3d'}},
+          y:{min:0,max:10,ticks:{color:'#f44336'},grid:{color:'#1e2d3d'}}}}});
+  },120);
+}
+
+function generateCoachReport(w,tLogs,dLogs,cfg,compliance,macroRows,corrData,injData){
+  const lines=[];
+  const streak=C.streak(tLogs);
+  const weekLogs=tLogs.filter(l=>l.semaine===w);
+  const sessions=new Set(weekLogs.map(l=>l.date)).size;
+  const lastMacro=macroRows[macroRows.length-1];
+
+  // Attendance
+  if(sessions>=5) lines.push('✅ <strong>Assiduité excellente</strong> : '+sessions+' séances cette semaine.');
+  else if(sessions>=3) lines.push('📊 <strong>Assiduité correcte</strong> : '+sessions+' séances. Vise 5-6 pour maximiser les résultats.');
+  else if(sessions>0) lines.push('⚠️ <strong>Assiduité faible</strong> : seulement '+sessions+' séance(s). La régularité est la clé de la progression.');
+  else lines.push('❌ <strong>Aucune séance</strong> enregistrée cette semaine.');
+
+  // Nutrition
+  if(lastMacro){
+    if(lastMacro.prot>=cfg.proteines_cible) lines.push('✅ <strong>Protéines</strong> : objectif atteint ('+lastMacro.prot+'g/j en moyenne).');
+    else lines.push('⚠️ <strong>Protéines insuffisantes</strong> : '+lastMacro.prot+'g/j vs objectif '+cfg.proteines_cible+'g. Augmente la viande, œufs, fromage blanc.');
+    const calDiff=lastMacro.cal-(cfg.calories_muscu||2900);
+    if(Math.abs(calDiff)<=150) lines.push('✅ <strong>Calories</strong> : dans la cible ('+lastMacro.cal+' kcal/j).');
+    else if(calDiff<-150) lines.push('⚠️ <strong>Déficit calorique trop important</strong> : '+lastMacro.cal+' kcal vs cible. Risque de perte musculaire.');
+    else lines.push('ℹ️ <strong>Surplus calorique</strong> : '+lastMacro.cal+' kcal. Surveille la progression du poids.');
+  } else {
+    lines.push('ℹ️ <strong>Nutrition non loguée</strong> cette semaine. Le suivi nutritionnel est aussi important que l\'entraînement.');
+  }
+
+  // Charges
+  const badCompliance=compliance.filter(r=>r.pct<80);
+  if(compliance.length>0&&badCompliance.length===0) lines.push('✅ <strong>Charges respectées</strong> : toutes les charges cibles atteintes.');
+  else if(badCompliance.length>0) lines.push('⚠️ <strong>'+badCompliance.length+' exercice(s) sous les cibles</strong> : revois la technique ou réduis les charges cibles si systématique.');
+
+  // Recovery
+  const sleepLogs=dLogs.filter(l=>l.sommeil).slice(-7);
+  if(sleepLogs.length){
+    const avgSleep=sleepLogs.reduce((a,l)=>a+l.sommeil,0)/sleepLogs.length;
+    if(avgSleep>=7.5) lines.push('✅ <strong>Sommeil optimal</strong> : '+avgSleep.toFixed(1)+'h en moyenne.');
+    else if(avgSleep>=6.5) lines.push('⚡ <strong>Sommeil correct</strong> : '+avgSleep.toFixed(1)+'h. Vise 8h pour maximiser la récupération.');
+    else lines.push('🚨 <strong>Sommeil insuffisant</strong> : '+avgSleep.toFixed(1)+'h. Impact direct sur les hormones et la récupération musculaire.');
+  }
+
+  // Injury
+  if(injData.length){
+    const last=injData[injData.length-1];
+    if(last.val>=7) lines.push('🚨 <strong>Douleur épaule critique</strong> ('+last.val+'/10) : consulte un kiné avant de continuer.');
+    else if(last.val>=4) lines.push('⚠️ <strong>Douleur épaule</strong> ('+last.val+'/10) : évite les tirages lourds et les dips. Chauffe 10 min avant.');
+    else lines.push('✅ <strong>Épaule</strong> : douleur légère ('+last.val+'/10), surveille.');
+  }
+
+  if(!lines.length) lines.push('ℹ️ Commence à loguer tes séances et ta nutrition pour obtenir un rapport personnalisé.');
+  return lines.map(l=>`<div style="padding:.3rem 0;border-bottom:1px solid var(--border);">${l}</div>`).join('');
+}
+
+async function _analyseRecompo(ph,tabs,cfg,tLogs,dLogs,ms){
+  const curve=C.recompoCurve(ms,dLogs);
+  const w=C.weekOf(cfg.startDate);
+
+  // Weight weekly averages from daily logs
+  const weightByWeek=[];
+  for(let wk=1;wk<=w;wk++){
+    const ws=C.weekStart(cfg.startDate,wk);
+    const we=new Date(ws); we.setDate(we.getDate()+6);
+    const wl=dLogs.filter(l=>{const d=new Date(l.date);return d>=ws&&d<=we&&l.poids;});
+    if(wl.length) weightByWeek.push({wk,poids:Math.round(wl.reduce((a,l)=>a+(l.poids||0),0)/wl.length*10)/10});
+  }
+
+  // Latest measurements
+  const lastMeas=ms.length?[...ms].sort((a,b)=>b.semaine-a.semaine)[0]:null;
+  const firstMeas=ms.length?[...ms].sort((a,b)=>a.semaine-b.semaine)[0]:null;
+  const firstWeight=dLogs.filter(l=>l.poids).sort((a,b)=>a.date.localeCompare(b.date))[0]?.poids;
+  const lastWeight=dLogs.filter(l=>l.poids).sort((a,b)=>b.date.localeCompare(a.date))[0]?.poids;
+
+  document.getElementById('app').innerHTML=`${ph}${tabs}
+
+    ${!ms.length&&!dLogs.filter(l=>l.poids).length?`
+    <div class="empty-state">
+      <div class="es-ico">💪</div>
+      <h3>Pas encore de données corporelles</h3>
+      <p>Renseigne ton poids quotidiennement et tes mensurations hebdomadaires pour voir ta courbe de recomposition.</p>
+      <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;">
+        <button class="btn btn-p" onclick="nav('suivi')">📊 Aller dans Suivi</button>
+      </div>
+    </div>`:`
+
+    <div class="grid g4 mb2">
+      ${firstWeight&&lastWeight?`
+        <div class="sc ${lastWeight<firstWeight?'sc-g':'sc-o'}">
+          <div class="sc-label">Poids initial</div>
+          <div class="sc-val">${firstWeight}<span class="sc-unit">kg</span></div>
+        </div>
+        <div class="sc ${lastWeight<firstWeight?'sc-g':'sc-o'}">
+          <div class="sc-label">Poids actuel</div>
+          <div class="sc-val">${lastWeight}<span class="sc-unit">kg</span></div>
+        </div>
+        <div class="sc ${lastWeight<firstWeight?'sc-g':'sc-r'}">
+          <div class="sc-label">Δ Poids</div>
+          <div class="sc-val">${(lastWeight-firstWeight)>0?'+':''}${Math.round((lastWeight-firstWeight)*10)/10}<span class="sc-unit">kg</span></div>
+        </div>`:''}
+      ${lastMeas?.body_fat?`
+        <div class="sc sc-b">
+          <div class="sc-label">% Graisse actuel</div>
+          <div class="sc-val">${lastMeas.body_fat}<span class="sc-unit">%</span></div>
+        </div>`:''}
+    </div>
+
+    ${weightByWeek.length>=2?`
+    <div class="card mb2">
+      <div class="card-title">⚖️ Courbe de poids — 12 semaines</div>
+      <div class="cbox-lg"><canvas id="weight-chart"></canvas></div>
+    </div>`:''}
+
+    ${curve.length>=2?`
+    <div class="card mb2">
+      <div class="card-title">💪 Recomposition corporelle</div>
+      <div class="cbox-lg"><canvas id="recompo-chart"></canvas></div>
+      <div style="font-size:.75rem;color:var(--t2);margin-top:.5rem;">
+        Renseigne le % de graisse dans Suivi → Mensus chaque semaine pour voir l'évolution masse maigre / masse grasse.
+      </div>
+    </div>`:''}
+
+    ${ms.length?`
+    <div class="card mb2">
+      <div class="card-title">📏 Évolution mensurations</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Semaine</th><th>Poids moy.</th><th>% Graisse</th><th>Taille nombril</th><th>Hanches</th><th>Masse maigre</th></tr></thead>
+        <tbody>
+          ${[...ms].sort((a,b)=>a.semaine-b.semaine).map(m=>{
+            const lbm=m.poids_moyen_7j&&m.body_fat?Math.round(m.poids_moyen_7j*(1-m.body_fat/100)*10)/10:null;
+            return `<tr>
+              <td>S${m.semaine}</td>
+              <td>${m.poids_moyen_7j||'—'} kg</td>
+              <td>${m.body_fat||'—'}%</td>
+              <td>${m.tour_taille_nombril||'—'} cm</td>
+              <td>${m.tour_hanches||'—'} cm</td>
+              <td class="t-a">${lbm||'—'} kg</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table></div>
+    </div>`:''}
+    `}
+  `;
+
+  setTimeout(()=>{
+    // Weight curve
+    if(weightByWeek.length>=2){
+      const wctx=document.getElementById('weight-chart')?.getContext('2d');
+      if(wctx){
+        const target=cfg.goals?.poids;
+        const datasets=[{label:'Poids moyen (kg)',data:weightByWeek.map(v=>v.poids),
+          borderColor:'#00e676',backgroundColor:'rgba(0,230,118,.07)',tension:.3,fill:true,pointRadius:4}];
+        if(target) datasets.push({label:'Objectif ('+target+'kg)',data:weightByWeek.map(()=>target),
+          borderColor:'rgba(66,165,245,.4)',borderDash:[6,4],pointRadius:0});
+        new Chart(wctx,{type:'line',data:{labels:weightByWeek.map(v=>'S'+v.wk),datasets},
+          options:{responsive:true,maintainAspectRatio:false,
+            plugins:{legend:{labels:{color:'#7a90a8',font:{size:11}}}},
+            scales:{x:{ticks:{color:'#7a90a8'},grid:{color:'#1e2d3d'}},
+              y:{ticks:{color:'#7a90a8'},grid:{color:'#1e2d3d'}}}}});
+      }
+    }
+    // Recompo chart
+    if(curve.length>=2){
+      const rctx=document.getElementById('recompo-chart')?.getContext('2d');
+      if(rctx) new Chart(rctx,{type:'bar',
+        data:{labels:curve.map(v=>'S'+v.w),datasets:[
+          {label:'Masse maigre (kg)',data:curve.map(v=>v.lbm),backgroundColor:'rgba(0,230,118,.6)',stack:'body'},
+          {label:'Masse grasse (kg)',data:curve.map(v=>v.fat),backgroundColor:'rgba(244,67,54,.4)',stack:'body'}
+        ]},
+        options:{responsive:true,maintainAspectRatio:false,
+          plugins:{legend:{labels:{color:'#7a90a8',font:{size:11}}}},
+          scales:{x:{ticks:{color:'#7a90a8'},grid:{color:'#1e2d3d'},stacked:true},
+            y:{ticks:{color:'#7a90a8'},grid:{color:'#1e2d3d'},stacked:true}}}});
+    }
+  },120);
+}
+
 async function delTLog(id){
   if(!confirm('Supprimer ?')) return;
   await DB.delTLog(id); toast('Supprimé'); analyse();
@@ -2912,17 +3628,17 @@ async function suivi(){
       <div class="card mb2">
         <div class="card-title">⚖️ Corps</div>
         <div class="fr fr2">
-          <div class="fg"><label>Poids matin (kg)</label><input type="number" id="qpoids" value="${ex.poids||''}" step="0.1" min="30" max="300" placeholder="82.5"></div>
-          <div class="fg"><label>Tour de taille (cm)</label><input type="number" id="qtaille" value="${ex.tour_taille||''}" step="0.5" placeholder="optionnel"></div>
-          <div class="fg"><label>Pas</label><input type="number" id="qpas" value="${ex.pas||''}" step="100" min="0" max="100000"></div>
-          <div class="fg"><label>Eau (L)</label><input type="number" id="qeau" value="${ex.eau||''}" step="0.1" min="0" max="10"></div>
+          <div class="fg"><label>Poids matin (kg)</label><input type="number" id="qpoids" value="${ex.poids||''}" step="0.1" min="30" max="300" placeholder="82.5" inputmode="decimal" oninput="triggerAutoSave()"></div>
+          <div class="fg"><label>Tour de taille (cm)</label><input type="number" inputmode="decimal" id="qtaille" value="${ex.tour_taille||''}" step="0. placeholder="optionnel"></div>
+          <div class="fg"><label>Pas</label><input type="number" id="qpas" value="${ex.pas||''}" step="100" min="0" max="100000" inputmode="numeric" oninput="triggerAutoSave()"></div>
+          <div class="fg"><label>Eau (L)</label><input type="number" id="qeau" value="${ex.eau||''}" step="0.1" min="0" max="10" inputmode="decimal" oninput="triggerAutoSave()"></div>
         </div>
       </div>
       <div class="card mb2">
         <div class="card-title">🏃 Activité</div>
         <div class="fr fr3">
-          <div class="fg"><label>Durée muscu (min)</label><input type="number" id="qdm" value="${ex.duree_muscu||''}" step="5" min="0" max="300" oninput="updKcal()"></div>
-          <div class="fg"><label>Durée cardio (min)</label><input type="number" id="qdc" value="${ex.duree_cardio||''}" step="5" min="0" max="300" oninput="updKcal()"></div>
+          <div class="fg"><label>Durée muscu (min)</label><input type="number" inputmode="numeric" id="qdm" value="${ex.duree_muscu||''}" step="5" min="0" max="300" oninput="updKcal()"></div>
+          <div class="fg"><label>Durée cardio (min)</label><input type="number" inputmode="numeric" id="qdc" value="${ex.duree_cardio||''}" step="5" min="0" max="300" oninput="updKcal()"></div>
           <div class="fg"><label>Type cardio</label>
             <select id="qtc" oninput="updKcal()">
               <option value="None" ${(ex.type_cardio||'None')==='None'?'selected':''}>Aucun</option>
@@ -2932,9 +3648,9 @@ async function suivi(){
             </select></div>
         </div>
         <div class="fr fr2 mt1">
-          <div class="fg"><label>Kcal Apple Watch</label><input type="number" id="qaw" value="${ex.kcal_apple_watch||''}" step="10" min="0" max="3000" placeholder="si disponible" oninput="updKcal()"></div>
+          <div class="fg"><label>Kcal Apple Watch</label><input type="number" inputmode="numeric" id="qaw" value="${ex.kcal_apple_watch||''}" step="10" min="0" max="3000" placeholder="si disponible" oninput="updKcal()"></div>
           <div class="fg"><label>Kcal retenue <span id="kcal-badge" style="color:var(--accent);">${ex.kcal_retenue?ex.kcal_retenue+' kcal':kcalEst?'~'+kcalEst+' kcal (estimé)':''}</span></label>
-            <input type="number" id="qkr" value="${ex.kcal_retenue||''}" step="10" min="0" max="3000" placeholder="${kcalEst||'auto'}"></div>
+            <input type="number" inputmode="numeric" id="qkr" value="${ex.kcal_retenue||''}" step="10" min="0" max="3000" placeholder="${kcalEst||'auto'}"></div>
         </div>
       </div>
       ${_suiviSaveBtn()}
@@ -2949,12 +3665,12 @@ async function suivi(){
               <option value="1" ${isM?'selected':''}>Muscu (${cfg.calories_muscu} kcal)</option>
               <option value="0" ${!isM?'selected':''}>Repos (${cfg.calories_repos} kcal)</option>
             </select></div>
-          <div class="fg"><label>Calories totales</label><input type="number" id="qcal" value="${ex.calories||''}" step="25" min="500" max="6000" placeholder="auto depuis repas"></div>
+          <div class="fg"><label>Calories totales</label><input type="number" inputmode="numeric" id="qcal" value="${ex.calories||''}" step="25" min="500" max="6000" placeholder="auto depuis repas"></div>
         </div>
         <div class="fr fr3">
-          <div class="fg"><label>Protéines (g)</label><input type="number" id="qprot" value="${ex.proteines||''}" step="5" min="0" max="500" placeholder="auto"></div>
-          <div class="fg"><label>Glucides (g)</label><input type="number" id="qgluc" value="${ex.glucides||''}" step="5" min="0" max="1000" placeholder="auto"></div>
-          <div class="fg"><label>Lipides (g)</label><input type="number" id="qlip" value="${ex.lipides||''}" step="2" min="0" max="300" placeholder="auto"></div>
+          <div class="fg"><label>Protéines (g)</label><input type="number" inputmode="numeric" id="qprot" value="${ex.proteines||''}" step="5" min="0" max="500" placeholder="auto"></div>
+          <div class="fg"><label>Glucides (g)</label><input type="number" inputmode="numeric" id="qgluc" value="${ex.glucides||''}" step="5" min="0" max="1000" placeholder="auto"></div>
+          <div class="fg"><label>Lipides (g)</label><input type="number" inputmode="numeric" id="qlip" value="${ex.lipides||''}" step="2" min="0" max="300" placeholder="auto"></div>
         </div>
       </div>
       ${_suiviSaveBtn()}
@@ -2974,10 +3690,10 @@ async function suivi(){
             </div>
             <div class="repas-body" id="repas-body-${mi}" style="${repas.kcal?'':'display:none;'}">
               <div class="fr fr4" style="gap:.4rem;">
-                <div class="fg"><label>Kcal</label><input type="number" id="rm${mi}_k" value="${repas.kcal||''}" step="25" min="0" placeholder="0" oninput="updRepas(${mi})"></div>
-                <div class="fg"><label>Prot (g)</label><input type="number" id="rm${mi}_p" value="${repas.prot||''}" step="5" min="0" placeholder="0" oninput="updRepas(${mi})"></div>
-                <div class="fg"><label>Gluc (g)</label><input type="number" id="rm${mi}_g" value="${repas.gluc||''}" step="5" min="0" placeholder="0" oninput="updRepas(${mi})"></div>
-                <div class="fg"><label>Lip (g)</label><input type="number" id="rm${mi}_l" value="${repas.lip||''}" step="2" min="0" placeholder="0" oninput="updRepas(${mi})"></div>
+                <div class="fg"><label>Kcal</label><input type="number" inputmode="numeric" id="rm${mi}_k" value="${repas.kcal||''}" step="25" min="0" placeholder="0" oninput="updRepas(${mi})"></div>
+                <div class="fg"><label>Prot (g)</label><input type="number" inputmode="numeric" id="rm${mi}_p" value="${repas.prot||''}" step="5" min="0" placeholder="0" oninput="updRepas(${mi})"></div>
+                <div class="fg"><label>Gluc (g)</label><input type="number" inputmode="numeric" id="rm${mi}_g" value="${repas.gluc||''}" step="5" min="0" placeholder="0" oninput="updRepas(${mi})"></div>
+                <div class="fg"><label>Lip (g)</label><input type="number" inputmode="numeric" id="rm${mi}_l" value="${repas.lip||''}" step="2" min="0" placeholder="0" oninput="updRepas(${mi})"></div>
               </div>
             </div>
           </div>`;
@@ -2993,34 +3709,34 @@ async function suivi(){
       <div class="card mb2">
         <div class="card-title">💤 Récupération</div>
         <div class="fr fr3">
-          <div class="fg"><label>Sommeil (h)</label><input type="number" id="qsom" value="${ex.sommeil||''}" step=".5" min="0" max="14" placeholder="8"></div>
+          <div class="fg"><label>Sommeil (h)</label><input type="number" inputmode="numeric" id="qsom" value="${ex.sommeil||''}" step=".5" min="0" max="14" placeholder="8"></div>
           <div class="fg">
             <label>Énergie (1–5)</label>
-            <input type="number" id="qener" value="${ex.energie||''}" step="1" min="1" max="5" placeholder="3" oninput="updRd()">
+            <input type="number" inputmode="numeric" id="qener" value="${ex.energie||''}" step="1" min="1" max="5" placeholder="3" oninput="updRd()">
             <div style="font-size:.68rem;color:var(--t3);">1=épuisé · 3=normal · 5=au top</div>
           </div>
           <div class="fg">
             <label>Stress (1–5)</label>
-            <input type="number" id="qstress" value="${ex.stress||''}" step="1" min="1" max="5" placeholder="2" oninput="updRd()">
+            <input type="number" inputmode="numeric" id="qstress" value="${ex.stress||''}" step="1" min="1" max="5" placeholder="2" oninput="updRd()">
             <div style="font-size:.68rem;color:var(--t3);">1=zen · 3=normal · 5=très stressé</div>
           </div>
           <div class="fg">
             <label>Courbatures haut corps (0–3)</label>
-            <input type="number" id="qdh" value="${ex.doms_haut||''}" step="1" min="0" max="3" oninput="updRd()">
+            <input type="number" inputmode="numeric" id="qdh" value="${ex.doms_haut||''}" step="1" min="0" max="3" oninput="updRd()">
             <div style="font-size:.68rem;color:var(--t3);">0=aucune · 1=légères · 2=fortes · 3=intenses</div>
           </div>
           <div class="fg">
             <label>Courbatures bas corps (0–3)</label>
-            <input type="number" id="qdb" value="${ex.doms_bas||''}" step="1" min="0" max="3" oninput="updRd()">
+            <input type="number" inputmode="numeric" id="qdb" value="${ex.doms_bas||''}" step="1" min="0" max="3" oninput="updRd()">
             <div style="font-size:.68rem;color:var(--t3);">0=aucune · 1=légères · 2=fortes · 3=intenses</div>
           </div>
-          <div class="fg"><label>Douleur épaule (0–10)</label><input type="number" id="qde" value="${ex.douleur_epaule||''}" step="1" min="0" max="10"></div>
+          <div class="fg"><label>Douleur épaule (0–10)</label><input type="number" inputmode="numeric" id="qde" value="${ex.douleur_epaule||''}" step="1" min="0" max="10"></div>
         </div>
         <div id="rd-widget" style="margin-top:.7rem;">
           ${ex.sommeil||ex.energie?rdWidget(rd):''}
         </div>
         <div class="fg mt2" style="margin-top:.7rem;"><label>RPE séance (1–10)</label>
-          <input type="number" id="qrpe" value="${ex.rpe_seance||''}" step=".5" min="1" max="10"></div>
+          <input type="number" inputmode="numeric" id="qrpe" value="${ex.rpe_seance||''}" step=".5" min="1" max="10"></div>
         <div class="fg mt1" style="margin-top:.5rem;"><label>Notes</label>
           <textarea id="qnotes" rows="2" placeholder="Sensations…">${ex.notes||''}</textarea></div>
       </div>
@@ -3045,7 +3761,7 @@ async function suivi(){
             ['Hanches (cm)','mhan',mex.tour_hanches,'.5'],['Poitrine (cm)','mpoi',mex.tour_poitrine,'.5'],
             ['Biceps G (cm)','mbg',mex.tour_biceps_g,'1'],['Biceps D (cm)','mbd',mex.tour_biceps_d,'1'],
             ['Cuisse (cm)','mcui',mex.tour_cuisse,'.5'],['Mollet (cm)','mmol',mex.tour_mollet,'.5'],
-          ].map(([l,id,v,step])=>`<div class="fg"><label>${l}</label><input type="number" id="${id}" value="${v||''}" step="${step}" min="0"></div>`).join('')}
+          ].map(([l,id,v,step])=>`<div class="fg"><label>${l}</label><input type="number" inputmode="numeric" id="${id}" value="${v||''}" step="${step}" min="0"></div>`).join('')}
         </div>
         <div class="fg mt1"><label>Commentaires</label><textarea id="mcom" rows="2">${mex.commentaires||''}</textarea></div>
         <button class="btn btn-p mt2" style="margin-top:.8rem;" onclick="saveMeas2()">💾 Enregistrer</button>
@@ -3071,8 +3787,23 @@ async function suivi(){
   }
 }
 
+let _suiviAutoSave=null;
+function triggerAutoSave(){
+  clearTimeout(_suiviAutoSave);
+  const badge=document.getElementById('autosave-badge');
+  if(badge){badge.classList.remove('show'); badge.textContent='...';}
+  _suiviAutoSave=setTimeout(async()=>{
+    await saveDLog(true);
+    if(badge){badge.textContent='✓ Sauvegardé';badge.classList.add('show');
+      setTimeout(()=>badge.classList.remove('show'),2000);}
+  },1500);
+}
+
 function _suiviSaveBtn(){
-  return `<button class="btn btn-p btn-lg" onclick="saveDLog()">💾 Enregistrer</button>`;
+  return `<div style="display:flex;align-items:center;gap:.7rem;margin-top:.5rem;">
+    <button class="btn btn-p btn-lg" onclick="saveDLog()">💾 Enregistrer</button>
+    <span class="autosave-badge" id="autosave-badge">✓ Sauvegardé</span>
+  </div>`;
 }
 
 async function saveMeas2(){
@@ -3117,17 +3848,17 @@ async function config(){
 
   if(ctab==='params'){
     cb.innerHTML=`
-      <div class="card" style="max-width:640px;">
+      <div class="card" style="max-width:100%;">
         <div class="card-title">⚙️ Configuration générale</div>
         <div class="fr fr2">
           <div class="fg"><label>Date de début</label><input type="date" id="ps" value="${cfg.startDate}"></div>
-          <div class="fg"><label>Poids initial (kg)</label><input type="number" id="pp" value="${cfg.poids_initial||''}" step="0.1" min="30" max="300"></div>
-          <div class="fg"><label>Calories muscu (kcal)</label><input type="number" id="pcm" value="${cfg.calories_muscu||2900}" step="50"></div>
-          <div class="fg"><label>Calories repos (kcal)</label><input type="number" id="pcr" value="${cfg.calories_repos||2550}" step="50"></div>
-          <div class="fg"><label>Tolérance ±kcal</label><input type="number" id="pct" value="${cfg.calories_tolerance||100}" step="25"></div>
-          <div class="fg"><label>Protéines (g/j)</label><input type="number" id="ppr" value="${cfg.proteines_cible||200}" step="5"></div>
-          <div class="fg"><label>Pas / jour</label><input type="number" id="ppa" value="${cfg.pas_cible||6000}" step="500"></div>
-          <div class="fg"><label>Eau cible (L/j)</label><input type="number" id="peu" value="${cfg.eau_cible||2.8}" step="0.1"></div>
+          <div class="fg"><label>Poids initial (kg)</label><input type="number" inputmode="decimal" id="pp" value="${cfg.poids_initial||''}" step="0. min="30" max="300"></div>
+          <div class="fg"><label>Calories muscu (kcal)</label><input type="number" inputmode="numeric" id="pcm" value="${cfg.calories_muscu||2900}" step="50"></div>
+          <div class="fg"><label>Calories repos (kcal)</label><input type="number" inputmode="numeric" id="pcr" value="${cfg.calories_repos||2550}" step="50"></div>
+          <div class="fg"><label>Tolérance ±kcal</label><input type="number" inputmode="numeric" id="pct" value="${cfg.calories_tolerance||100}" step="25"></div>
+          <div class="fg"><label>Protéines (g/j)</label><input type="number" inputmode="numeric" id="ppr" value="${cfg.proteines_cible||200}" step="5"></div>
+          <div class="fg"><label>Pas / jour</label><input type="number" inputmode="numeric" id="ppa" value="${cfg.pas_cible||6000}" step="500"></div>
+          <div class="fg"><label>Eau cible (L/j)</label><input type="number" inputmode="decimal" id="peu" value="${cfg.eau_cible||2.8}" step="0.></div>
           <div class="fg"><label>Mode AUTO</label>
             <select id="pau">
               <option value="true" ${cfg.mode_auto?'selected':''}>Activé ✅</option>
@@ -3154,8 +3885,8 @@ async function config(){
               <td><strong>${exo}</strong></td>
               <td><span class="badge b-n">${sr?.m||'—'}</span></td>
               <td class="t-m">${sr?.reps||'—'}</td>
-              <td><input type="number" id="rc_${k}" value="${r.charge||''}" step="0.5" min="0" style="width:85px;" placeholder="kg"></td>
-              <td><input type="number" id="rr_${k}" value="${r.reps||''}" step="1" min="1" style="width:70px;" placeholder="reps"></td>
+              <td><input type="number" inputmode="decimal" id="rc_${k}" value="${r.charge||''}" step="0. min="0" style="width:85px;" placeholder="kg"></td>
+              <td><input type="number" inputmode="numeric" id="rr_${k}" value="${r.reps||''}" step="1" min="1" style="width:70px;" placeholder="reps"></td>
             </tr>`;
           }).join('')}
         </tbody>
@@ -3166,9 +3897,9 @@ async function config(){
         <div class="card">
           <div class="card-title">⚡ Calories de maintien ${tip('tdee')}</div>
           <div class="fr fr2">
-            <div class="fg"><label>Poids (kg)</label><input type="number" id="ctpoids" step=".1" min="30" max="300" placeholder="82"></div>
-            <div class="fg"><label>Taille (cm)</label><input type="number" id="cttaille" step="1" min="140" max="220" placeholder="178"></div>
-            <div class="fg"><label>Âge</label><input type="number" id="ctage" step="1" min="15" max="80" placeholder="28"></div>
+            <div class="fg"><label>Poids (kg)</label><input type="number" inputmode="numeric" id="ctpoids" step=".1" min="30" max="300" placeholder="82"></div>
+            <div class="fg"><label>Taille (cm)</label><input type="number" inputmode="numeric" id="cttaille" step="1" min="140" max="220" placeholder="178"></div>
+            <div class="fg"><label>Âge</label><input type="number" inputmode="numeric" id="ctage" step="1" min="15" max="80" placeholder="28"></div>
             <div class="fg"><label>Sexe</label><select id="ctsexe"><option value="h">Homme</option><option value="f">Femme</option></select></div>
             <div class="fg" style="grid-column:span 2;"><label>Activité</label>
               <select id="ctact">
@@ -3185,9 +3916,9 @@ async function config(){
         <div class="card">
           <div class="card-title">💪 FFMI ${tip('ffmi')}</div>
           <div class="fr fr2">
-            <div class="fg"><label>Poids (kg)</label><input type="number" id="cfpoids" step=".1" min="30" max="200" placeholder="82"></div>
-            <div class="fg"><label>Taille (cm)</label><input type="number" id="cftaille" step="1" min="140" max="220" placeholder="178"></div>
-            <div class="fg"><label>% Graisse</label><input type="number" id="cfbf" step=".5" min="3" max="50" placeholder="15"></div>
+            <div class="fg"><label>Poids (kg)</label><input type="number" inputmode="numeric" id="cfpoids" step=".1" min="30" max="200" placeholder="82"></div>
+            <div class="fg"><label>Taille (cm)</label><input type="number" inputmode="numeric" id="cftaille" step="1" min="140" max="220" placeholder="178"></div>
+            <div class="fg"><label>% Graisse</label><input type="number" inputmode="numeric" id="cfbf" step=".5" min="3" max="50" placeholder="15"></div>
           </div>
           <button class="btn btn-p mt2" style="margin-top:.7rem;" onclick="calcFFMI()">Calculer</button>
           <div id="ffmi-result" style="margin-top:.8rem;"></div>
@@ -3196,10 +3927,10 @@ async function config(){
           <div class="card-title">🌊 % Graisse — Méthode Navy</div>
           <div class="fr fr4">
             <div class="fg"><label>Sexe</label><select id="cnsexe" onchange="document.getElementById('cn-hanches').style.display=this.value==='f'?'':'none'"><option value="h">Homme</option><option value="f">Femme</option></select></div>
-            <div class="fg"><label>Taille (cm)</label><input type="number" id="cntaille" step="1" placeholder="178"></div>
-            <div class="fg"><label>Cou (cm)</label><input type="number" id="cncou" step=".5" placeholder="38"></div>
-            <div class="fg"><label>Taille (cm)</label><input type="number" id="cntaille2" step=".5" placeholder="85"></div>
-            <div class="fg" id="cn-hanches" style="display:none;"><label>Hanches (cm)</label><input type="number" id="cnhanches" step=".5" placeholder="95"></div>
+            <div class="fg"><label>Taille (cm)</label><input type="number" inputmode="numeric" id="cntaille" step="1" placeholder="178"></div>
+            <div class="fg"><label>Cou (cm)</label><input type="number" inputmode="numeric" id="cncou" step=".5" placeholder="38"></div>
+            <div class="fg"><label>Taille (cm)</label><input type="number" inputmode="numeric" id="cntaille2" step=".5" placeholder="85"></div>
+            <div class="fg" id="cn-hanches" style="display:none;"><label>Hanches (cm)</label><input type="number" inputmode="numeric" id="cnhanches" step=".5" placeholder="95"></div>
           </div>
           <button class="btn btn-p mt2" style="margin-top:.7rem;" onclick="calcNavy()">Calculer</button>
           <div id="navy-result" style="margin-top:.8rem;"></div>
@@ -3288,10 +4019,10 @@ async function editseanceInConfig(){
           <div class="fg"><label>Groupe</label><select onchange="updExo(${si},${ei},'m',this.value)">${GROUPES.map(g=>`<option ${exo.m===g?'selected':''}>${g}</option>`).join('')}</select></div>
         </div>
         <div class="fr fr4" style="gap:.4rem;margin-bottom:.5rem;">
-          <div class="fg"><label>Séries</label><input type="number" value="${exo.sb||3}" min="1" max="8" onchange="updExo(${si},${ei},'sb',+this.value)"></div>
-          <div class="fg"><label>Reps min</label><input type="number" value="${exo.ri||8}" min="1" max="50" onchange="updExo(${si},${ei},'ri',+this.value)"></div>
-          <div class="fg"><label>Reps max</label><input type="number" value="${exo.ra||12}" min="1" max="99" onchange="updExo(${si},${ei},'ra',+this.value)"></div>
-          <div class="fg"><label>Repos (s)</label><input type="number" value="${exo.rest||90}" min="30" max="300" step="15" onchange="updExo(${si},${ei},'rest',+this.value)"></div>
+          <div class="fg"><label>Séries</label><input type="number" inputmode="numeric" value="${exo.sb||3}" min="1" max="8" onchange="updExo(${si},${ei},'sb',+this.value)"></div>
+          <div class="fg"><label>Reps min</label><input type="number" inputmode="numeric" value="${exo.ri||8}" min="1" max="50" onchange="updExo(${si},${ei},'ri',+this.value)"></div>
+          <div class="fg"><label>Reps max</label><input type="number" inputmode="numeric" value="${exo.ra||12}" min="1" max="99" onchange="updExo(${si},${ei},'ra',+this.value)"></div>
+          <div class="fg"><label>Repos (s)</label><input type="number" inputmode="numeric" value="${exo.rest||90}" min="30" max="300" step="15" onchange="updExo(${si},${ei},'rest',+this.value)"></div>
         </div>
         <div class="fr fr2" style="gap:.4rem;margin-bottom:.5rem;">
           <div class="fg"><label>Tempo</label><input type="text" value="${exo.tempo||'2-0-2'}" onchange="updExo(${si},${ei},'tempo',this.value)"></div>
@@ -3366,16 +4097,16 @@ async function setup(){
         <div class="card">
           <div class="card-title">📅 Programme</div>
           <div class="fg mb2"><label>Date de début</label><input type="date" id="s1" value="${d.startDate||new Date().toISOString().slice(0,10)}"></div>
-          <div class="fg mb2"><label>Poids actuel (kg)</label><input type="number" id="s2" value="${d.poids||''}" step="0.1" min="30" max="300" placeholder="82.5"></div>
+          <div class="fg mb2"><label>Poids actuel (kg)</label><input type="number" inputmode="decimal" id="s2" value="${d.poids||''}" step="0. min="30" max="300" placeholder="82.5"></div>
         </div>
       `:step===2?`
         <div class="card">
           <div class="card-title">🍽 Nutrition</div>
           <div class="fr fr2">
-            <div class="fg mb2"><label>Calories jours muscu</label><input type="number" id="s3" value="${d.cal_m||2900}" step="50"></div>
-            <div class="fg mb2"><label>Calories jours repos</label><input type="number" id="s4" value="${d.cal_r||2550}" step="50"></div>
-            <div class="fg mb2"><label>Protéines (g/j)</label><input type="number" id="s5" value="${d.prot||200}" step="5"></div>
-            <div class="fg mb2"><label>Pas / jour</label><input type="number" id="s6" value="${d.pas||6000}" step="500"></div>
+            <div class="fg mb2"><label>Calories jours muscu</label><input type="number" inputmode="numeric" id="s3" value="${d.cal_m||2900}" step="50"></div>
+            <div class="fg mb2"><label>Calories jours repos</label><input type="number" inputmode="numeric" id="s4" value="${d.cal_r||2550}" step="50"></div>
+            <div class="fg mb2"><label>Protéines (g/j)</label><input type="number" inputmode="numeric" id="s5" value="${d.prot||200}" step="5"></div>
+            <div class="fg mb2"><label>Pas / jour</label><input type="number" inputmode="numeric" id="s6" value="${d.pas||6000}" step="500"></div>
           </div>
         </div>
       `:`
@@ -3388,8 +4119,8 @@ async function setup(){
               ${getAllExos().slice(0,15).map(exo=>{
                 const k=exo.replace(/[^a-zA-Z0-9]/g,'_');
                 return `<tr><td><strong>${exo}</strong></td>
-                  <td><input type="number" id="rc_${k}" step="0.5" min="0" style="width:85px;" placeholder="kg"></td>
-                  <td><input type="number" id="rr_${k}" step="1" min="1" style="width:70px;" placeholder="reps"></td></tr>`;
+                  <td><input type="number" inputmode="decimal" id="rc_${k}" step="0. min="0" style="width:85px;" placeholder="kg"></td>
+                  <td><input type="number" inputmode="numeric" id="rr_${k}" step="1" min="1" style="width:70px;" placeholder="reps"></td></tr>`;
               }).join('')}
             </tbody>
           </table></div>
@@ -3462,22 +4193,22 @@ async function _configObjectifs(cb,cfg){
   const goals=cfg.goals||{};
 
   cb.innerHTML=`
-    <div class="card" style="max-width:700px;">
+    <div class="card" style="max-width:100%;">
       <div class="card-title">🎯 Objectifs personnels</div>
       <p class="t-m" style="font-size:.82rem;margin-bottom:1rem;">Définis tes cibles pour suivre ta progression globale.</p>
       <div class="grid g2" style="gap:.8rem;">
         <div class="fg"><label>Poids cible (kg)</label>
-          <input type="number" id="gw" value="${goals.poids||''}" step="0.1" min="30" max="300" placeholder="ex: 78"></div>
+          <input type="number" inputmode="decimal" id="gw" value="${goals.poids||''}" step="0. min="30" max="300" placeholder="ex: 78"></div>
         <div class="fg"><label>% Graisse cible</label>
-          <input type="number" id="gbf" value="${goals.bf||''}" step="0.5" min="3" max="40" placeholder="ex: 12"></div>
+          <input type="number" inputmode="decimal" id="gbf" value="${goals.bf||''}" step="0. min="3" max="40" placeholder="ex: 12"></div>
         <div class="fg"><label>Tour de taille cible (cm)</label>
-          <input type="number" id="gwt" value="${goals.taille||''}" step="0.5" min="50" max="150" placeholder="ex: 82"></div>
+          <input type="number" inputmode="decimal" id="gwt" value="${goals.taille||''}" step="0. min="50" max="150" placeholder="ex: 82"></div>
         <div class="fg"><label>1RM développé couché (kg)</label>
-          <input type="number" id="gbench" value="${goals.bench||''}" step="2.5" min="20" max="300" placeholder="ex: 120"></div>
+          <input type="number" inputmode="numeric" id="gbench" value="${goals.bench||''}" step="2.5" min="20" max="300" placeholder="ex: 120"></div>
         <div class="fg"><label>1RM squat (kg)</label>
-          <input type="number" id="gsquat" value="${goals.squat||''}" step="2.5" min="20" max="400" placeholder="ex: 140"></div>
+          <input type="number" inputmode="numeric" id="gsquat" value="${goals.squat||''}" step="2.5" min="20" max="400" placeholder="ex: 140"></div>
         <div class="fg"><label>1RM deadlift (kg)</label>
-          <input type="number" id="gdead" value="${goals.dead||''}" step="2.5" min="20" max="500" placeholder="ex: 180"></div>
+          <input type="number" inputmode="numeric" id="gdead" value="${goals.dead||''}" step="2.5" min="20" max="500" placeholder="ex: 180"></div>
       </div>
       <button class="btn btn-p mt2" style="margin-top:1rem;" onclick="saveGoals()">💾 Enregistrer les objectifs</button>
     </div>
@@ -3769,10 +4500,31 @@ async function saveQL(type){
 }
 
 function initPWA(){
+  // Manifest already set as data URI in <head>
+  // Register service worker for offline caching
   if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('SW registered:', reg.scope))
-      .catch(err => console.log('SW error:', err));
+    const swCode=`
+const CACHE='trackfit-v2';
+const ASSETS=['/'];
+self.addEventListener('install',e=>{ self.skipWaiting(); });
+self.addEventListener('activate',e=>e.waitUntil(clients.claim()));
+self.addEventListener('fetch',e=>{
+  if(e.request.method!=='GET') return;
+  e.respondWith(
+    caches.match(e.request).then(r=>{
+      return r || fetch(e.request).then(res=>{
+        if(res.status===200){
+          const clone=res.clone();
+          caches.open(CACHE).then(c=>c.put(e.request,clone));
+        }
+        return res;
+      }).catch(()=>r||new Response('Offline',{status:503}));
+    })
+  );
+});`.trim();
+    const blob=new Blob([swCode],{type:'application/javascript'});
+    navigator.serviceWorker.register(URL.createObjectURL(blob))
+      .catch(()=>{/* file:// protocol doesn't support SW */});
   }
 }
 
@@ -3811,7 +4563,9 @@ async function init(){
     setTimeout(()=>btn.remove(),12000);
   }
 
-  S.page='home';
+  // Restore last visited page
+  const lastPage=localStorage.getItem('lastPage');
+  S.page=(lastPage&&['home','seance','analyse','suivi','config'].includes(lastPage))?lastPage:'home';
   await render();
   // Show iOS install prompt if on Safari iOS and not standalone
   const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
@@ -3831,6 +4585,35 @@ async function init(){
 }
 
 window.addEventListener('DOMContentLoaded', init);
+
+// Global swipe between main pages — pinch zoom safe
+(function(){
+  const PAGES=['home','seance','suivi','analyse','config'];
+  let _sx=0, _sy=0, _multiTouch=false;
+  document.addEventListener('touchstart',e=>{
+    // If 2+ fingers = pinch zoom, don't track swipe
+    _multiTouch = e.touches.length > 1;
+    if(_multiTouch) return;
+    _sx=e.touches[0].clientX; _sy=e.touches[0].clientY;
+  },{passive:true});
+  document.addEventListener('touchmove',e=>{
+    // If pinch zoom started, mark as multi-touch
+    if(e.touches.length > 1) _multiTouch=true;
+  },{passive:true});
+  document.addEventListener('touchend',e=>{
+    // Never interfere with pinch zoom
+    if(_multiTouch){ _multiTouch=false; return; }
+    const dx=e.changedTouches[0].clientX-_sx;
+    const dy=e.changedTouches[0].clientY-_sy;
+    if(Math.abs(dx)<70||Math.abs(dy)>50) return;
+    if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT'||e.target.tagName==='TEXTAREA') return;
+    if(e.target.closest('#exo-list')||e.target.closest('.tbl-wrap')||e.target.closest('.tabs')) return;
+    const cur=PAGES.indexOf(S.page);
+    if(cur<0) return;
+    if(dx<-70&&cur<PAGES.length-1) nav(PAGES[cur+1]);
+    else if(dx>70&&cur>0) nav(PAGES[cur-1]);
+  },{passive:true});
+})();
 
 </script>
 </body>
