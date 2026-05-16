@@ -815,14 +815,28 @@ html { font-size: var(--fz-base); }
   .fr4 { grid-template-columns: repeat(4,1fr); }
 }
 
-/* ── Zoom & Touch Actions ── */
+/* ── Touch Actions ── */
 button, a, .btn, .tab, .bn-item, .sb-item,
 .charge-btn, .s-btn, .cl-item, .ql-btn, .metric {
-  touch-action: manipulation; /* fast tap, no double-tap zoom */
+  touch-action: manipulation;
 }
-#main, #app, .card, .exo-card, .serie-grid {
-  touch-action: pan-x pan-y pinch-zoom; /* allow pinch zoom */
+
+/* ── Pinch Zoom Container ── */
+#zoom-wrapper {
+  transform-origin: 0 0;
+  width: 100%;
+  will-change: transform;
 }
+.zoom-indicator {
+  position: fixed; bottom: calc(var(--bottomnav-h) + var(--safe-bot) + 8px);
+  left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,.7); color: #fff;
+  padding: .3rem .8rem; border-radius: 20px;
+  font-size: .78rem; font-family: var(--fm);
+  z-index: 9999; pointer-events: none;
+  opacity: 0; transition: opacity .3s;
+}
+.zoom-indicator.show { opacity: 1; }
 
 </style>
 </head>
@@ -861,8 +875,9 @@ button, a, .btn, .tab, .bn-item, .sb-item,
   <div class="bn-item" data-p="config"><div class="bn-icon">⚙️</div><span>Config</span></div>
 </div>
 
-<main id="main"><div id="app" style="width:100%;max-width:100%;"></div></main>
+<main id="main"><div id="zoom-wrapper"><div id="app" style="width:100%;max-width:100%;"></div></div></main>
 <div id="toasts"></div>
+<div class="zoom-indicator" id="zoom-indicator">🔍 100%</div>
 
 <!-- iOS Install Banner -->
 <div id="ios-install-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9800;
@@ -4583,6 +4598,108 @@ async function init(){
     setTimeout(()=>showTourStep(0), isIOS&&!isStandalone?500:600);
   }
 }
+
+// ── PINCH ZOOM (iOS PWA) ─────────────────────────────────────
+(function(){
+  let scale = 1;
+  let lastScale = 1;
+  let originX = 0;
+  let originY = 0;
+  let translateX = 0;
+  let translateY = 0;
+  const MIN_SCALE = 1;
+  const MAX_SCALE = 4;
+
+  const wrapper = () => document.getElementById('zoom-wrapper');
+  const indicator = () => document.getElementById('zoom-indicator');
+  let _indicatorTimer = null;
+
+  function showIndicator(s) {
+    const el = indicator();
+    if (!el) return;
+    el.textContent = '🔍 ' + Math.round(s * 100) + '%';
+    el.classList.add('show');
+    clearTimeout(_indicatorTimer);
+    _indicatorTimer = setTimeout(() => el.classList.remove('show'), 1200);
+  }
+
+  function applyTransform() {
+    const w = wrapper();
+    if (!w) return;
+    // Clamp translateX/Y so content stays visible
+    const maxTx = 0;
+    const minTx = (scale <= 1) ? 0 : -(scale - 1) * window.innerWidth;
+    const maxTy = 0;
+    const minTy = (scale <= 1) ? 0 : -(scale - 1) * window.innerHeight * 2;
+    translateX = Math.max(minTx, Math.min(maxTx, translateX));
+    translateY = Math.max(minTy, Math.min(maxTy, translateY));
+    w.style.transform = scale === 1
+      ? 'none'
+      : `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    w.style.transformOrigin = '0 0';
+  }
+
+  // Double-tap to reset zoom
+  let _lastTap = 0;
+  document.addEventListener('touchend', e => {
+    if (e.touches.length > 0) return;
+    const now = Date.now();
+    if (now - _lastTap < 300 && e.target.tagName !== 'BUTTON' && e.target.tagName !== 'INPUT') {
+      if (scale > 1) {
+        scale = 1; translateX = 0; translateY = 0;
+        applyTransform();
+        showIndicator(1);
+      }
+    }
+    _lastTap = now;
+  }, { passive: true });
+
+  // Pinch zoom
+  let _initDist = 0;
+  let _initScale = 1;
+  let _initMidX = 0;
+  let _initMidY = 0;
+
+  document.addEventListener('touchstart', e => {
+    if (e.touches.length === 2) {
+      const t1 = e.touches[0], t2 = e.touches[1];
+      _initDist = Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+      _initScale = scale;
+      _initMidX = (t1.clientX + t2.clientX) / 2;
+      _initMidY = (t1.clientY + t2.clientY) / 2;
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchmove', e => {
+    if (e.touches.length === 2) {
+      const t1 = e.touches[0], t2 = e.touches[1];
+      const dist = Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+      const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, _initScale * (dist / _initDist)));
+
+      if (newScale !== scale) {
+        // Zoom around pinch midpoint
+        const midX = (t1.clientX + t2.clientX) / 2;
+        const midY = (t1.clientY + t2.clientY) / 2;
+        const scaleRatio = newScale / scale;
+        translateX = midX - scaleRatio * (midX - translateX);
+        translateY = midY - scaleRatio * (midY - translateY);
+        scale = newScale;
+        applyTransform();
+        showIndicator(scale);
+      }
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchend', e => {
+    if (e.touches.length < 2) {
+      lastScale = scale;
+      if (scale < 1.05) {
+        scale = 1; translateX = 0; translateY = 0;
+        applyTransform();
+      }
+    }
+  }, { passive: true });
+})();
 
 window.addEventListener('DOMContentLoaded', init);
 
