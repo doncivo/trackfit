@@ -4,7 +4,7 @@ self.addEventListener('install', e => {
   self.skipWaiting();
   e.waitUntil(
     caches.open(CACHE).then(cache => {
-      return cache.addAll(['/', '/index.html', '/manifest.json', '/icon-180.svg', '/icon-512.svg']);
+      return cache.addAll(['./', './index.html', './manifest.json', './icon-180.svg', './icon-512.svg']);
     })
   );
 });
