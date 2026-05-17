@@ -7,50 +7,36 @@
   publish = "trackfit-pwa"
 
 # ── Headers HTTP ──────────────────────────────────────
-# Cache long pour les assets statiques
+
+# Icônes : cache 1 an (immuables)
 [[headers]]
   for = "/icon-*.svg"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Manifest : cache 1 heure
 [[headers]]
   for = "/manifest.json"
   [headers.values]
     Cache-Control = "public, max-age=3600"
     Content-Type  = "application/manifest+json"
 
-# Service Worker : jamais mis en cache (sinon les mises à jour ne passent pas)
+# Service Worker : jamais mis en cache
 [[headers]]
   for = "/sw.js"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
 
-# Page principale : revalidation rapide
+# Page principale : toujours revalidée
 [[headers]]
   for = "/index.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
-# Sécurité & performance
+# Sécurité sur tout le site
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options        = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy        = "strict-origin-when-cross-origin"
-
-# ── Plugin Lighthouse ─────────────────────────────────
-[[plugins]]
-  package = "@netlify/plugin-lighthouse"
-
-  [plugins.inputs]
-    # Ne bloque PAS le déploiement, juste un rapport
-    fail_deploy_on_score_thresholds = "false"
-    output_path = "lighthouse-results.html"
-
-  [plugins.inputs.thresholds]
-    performance   = 0.7
-    accessibility = 0.8
-    best-practices = 0.8
-    pwa           = 0.7
-
