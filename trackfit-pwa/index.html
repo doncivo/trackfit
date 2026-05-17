@@ -1518,12 +1518,18 @@ const ExoTimers = {
       t.rem=0; t.state='done';
       clearInterval(t.iv); t.iv=null;
       haptic([200,100,200]);
-      // Beep
-      try{const ac=new AudioContext(),o=ac.createOscillator(),g=ac.createGain();
-        o.connect(g);g.connect(ac.destination);
-        o.frequency.value=660;g.gain.value=0.25;
-        o.start();g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.4);
-        setTimeout(()=>{o.stop();ac.close()},400);
+      // Beep — ascending tones for "GO"
+      try{
+        const ac=new AudioContext();
+        [[440,.1],[550,.2],[660,.35]].forEach(([freq,delay])=>{
+          const o=ac.createOscillator(),g=ac.createGain();
+          o.connect(g);g.connect(ac.destination);
+          o.frequency.value=freq; g.gain.value=0.2;
+          o.start(ac.currentTime+delay);
+          g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+delay+0.3);
+          setTimeout(()=>{try{o.stop();}catch(e){}},400+delay*1000);
+        });
+        setTimeout(()=>{try{ac.close();}catch(e){}},1500);
       }catch(e){}
     }
     this._render(ei);
@@ -1667,9 +1673,14 @@ function renderExoCard(exo,ei,w,refs,tLogs){
             <span>Tempo ${exo.tempo}</span>
             <span>RIR ${exo.rir} ${tip("rir")}</span>
             ${lastCharge?`<span style="color:var(--blue);">Dernière : ${lastCharge}kg</span>`:''}
+            ${(()=>{
+              const sug=suggestCharge(exo.nom,ct||lastCharge,tLogs);
+              return sug?`<span class="cmp-badge ${sug.delta>0?'cmp-up':sug.delta<0?'cmp-down':'cmp-eq'}" title="${sug.msg}">${sug.delta>0?'↑+'+sug.delta:sug.delta<0?'↓'+sug.delta:'= ok'}</span>`:'';
+            })()}
             <button class="hist-toggle" onclick="S.params.hist_${ei}=!S.params.hist_${ei};const c=document.getElementById('ec-${ei}');if(c)c.outerHTML=renderExoCard(getSessions()[S.sess.si||0].exos[${ei}],${ei},${w},null,null)">
               ${showHist?'▲ Masquer':'📋 Historique'}
             </button>
+            <button class="hist-toggle" onclick="openReplaceExo(${ei})" title="Remplacer cet exercice" style="color:var(--orange);">🔄</button>
           </div>
         </div>
         <div class="exo-targets">
@@ -1735,7 +1746,18 @@ function renderExoCard(exo,ei,w,refs,tLogs){
               ${s.done?'✓':'›'}
             </button>
           </div>
-          ${isNext&&!s.done?'<div class="next-series-indicator">▼ Série suivante</div>':''}
+          ${s.done?`<div id="rpe-${ei}-${si}" style="margin:.2rem 0 0 28px;">${renderSerieRPE(ei,si)}</div>`:''}
+          ${(()=>{
+            if(!s.done) return isNext&&!s.done?'<div class="next-series-indicator">▼ Série suivante</div>':'';
+            const lastSess=[...tLogs.filter(l=>l.exercice===exo.nom&&l.series?.length)].sort((a,b)=>b.date.localeCompare(a.date))[0];
+            const lastSerie=lastSess?.series?.[si];
+            if(!lastSerie) return '';
+            const cdiff=s.charge-(lastSerie.charge||0);
+            const rdiff=s.reps-(lastSerie.reps||0);
+            const cls=cdiff>0||rdiff>0?'cmp-up':cdiff<0||rdiff<0?'cmp-down':'cmp-eq';
+            const lbl=`vs S-1 : ${lastSerie.charge}kg×${lastSerie.reps}`;
+            return `<div style="margin:.15rem 0 0 28px;"><span class="cmp-badge ${cls}" title="${lbl}">${cdiff>0?'+':''}${cdiff}kg ${rdiff>0?'+':''}${rdiff}r vs S-1</span></div>`;
+          })()}
         `}).join('')}
       </div>
       <div class="exo-rest-wrap">
@@ -1755,6 +1777,148 @@ function renderExoCard(exo,ei,w,refs,tLogs){
       `:''}
       ${exo.fin?`<div class="alert a-info" style="font-size:.76rem;margin-top:.5rem;padding:.35rem .7rem;margin-bottom:0;">🔥 Finisher : ${exo.fin}</div>`:''}
     </div>`;
+}
+
+// ── COUNTDOWN 3-2-1 ─────────────────────────────────────────────
+function startCountdown(cb){
+  const overlay=document.getElementById('countdown-overlay');
+  const numEl=document.getElementById('countdown-num');
+  const lblEl=document.getElementById('countdown-label');
+  if(!overlay) { cb(); return; }
+  let n=3;
+  overlay.classList.remove('hidden');
+  haptic([50]);
+  const tick=()=>{
+    numEl.textContent=n;
+    lblEl.textContent=n===3?'Prépare-toi...':n===2?'Position !':'GO !';
+    // Flash number animation — restart by cloning
+    const newNum=numEl.cloneNode(true);
+    numEl.parentNode.replaceChild(newNum,numEl);
+    if(n===1){
+      haptic([200]);
+      setTimeout(()=>{
+        overlay.classList.add('hidden');
+        cb();
+      },800);
+    } else {
+      haptic([30]);
+      n--;
+      setTimeout(tick,900);
+    }
+  };
+  tick();
+}
+
+// ── CHARGE SUGGESTION based on last RPE ─────────────────────────
+function suggestCharge(exoNom, currentCharge, tLogs){
+  const lastLog=[...tLogs.filter(l=>l.exercice===exoNom&&l.rpe)].sort((a,b)=>b.date.localeCompare(a.date))[0];
+  if(!lastLog||!currentCharge) return null;
+  const rpe=lastLog.rpe;
+  if(rpe>=9)   return {delta:-2.5, msg:`RPE ${rpe} last time — −2.5kg recommandé`};
+  if(rpe>=8)   return {delta:0,    msg:`RPE ${rpe} — maintiens la charge`};
+  if(rpe<=6)   return {delta:+2.5, msg:`RPE ${rpe} last time — +2.5kg possible`};
+  return null;
+}
+
+// ── RPE PER SERIE ─────────────────────────────────────────────────
+function renderSerieRPE(ei, si){
+  const cur=S.sess.sets[ei]?.[si]?.rpe||0;
+  const dots=[6,7,8,9,10].map(v=>{
+    const colors={6:'#00e676',7:'#69f0ae',8:'#ffca28',9:'#ff7043',10:'#f44336'};
+    const sel=cur===v;
+    return `<div class="rpe-dot ${sel?'selected':''}"
+      style="${sel?'background:'+colors[v]+';':''}"
+      onclick="setSerieRPE(${ei},${si},${v})" title="RPE ${v}">${v}</div>`;
+  }).join('');
+  return `<div class="serie-rpe">${dots}</div>`;
+}
+
+function setSerieRPE(ei, si, val){
+  if(!S.sess.sets[ei]) return;
+  S.sess.sets[ei][si].rpe = S.sess.sets[ei][si].rpe===val ? 0 : val;
+  haptic([20]);
+  // Re-render just the RPE row
+  const rpeEl=document.getElementById(`rpe-${ei}-${si}`);
+  if(rpeEl) rpeEl.innerHTML=renderSerieRPE(ei,si);
+}
+
+// ── REPLACE EXERCISE ──────────────────────────────────────────────
+function openReplaceExo(ei){
+  const sess=getSessions()[S.sess.si||0];
+  const exo=sess?.exos[ei];
+  if(!exo) return;
+
+  const overlay=document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9000;display:flex;align-items:flex-end;justify-content:center;';
+  overlay.id='replace-overlay';
+  overlay.addEventListener('click',e=>{ if(e.target===overlay) overlay.remove(); });
+
+  // Build alternatives list
+  const alts=exo.alt?exo.alt.split(',').map(a=>a.trim()).filter(Boolean):[];
+  // Add all exercises from same muscle group
+  const sameGroup=getSessions().flatMap(s=>s.exos).filter(e=>e.m===exo.m&&e.nom!==exo.nom).map(e=>e.nom);
+  const allAlts=[...new Set([...alts,...sameGroup])].slice(0,10);
+
+  const panel=document.createElement('div');
+  panel.style.cssText='background:var(--s1);border-radius:var(--r) var(--r) 0 0;padding:1.2rem;width:100%;max-width:500px;max-height:70vh;overflow-y:auto;';
+  panel.innerHTML=`
+    <div style="font-family:var(--fc);font-size:1.1rem;font-weight:800;margin-bottom:.4rem;">Remplacer : ${exo.nom}</div>
+    <div style="font-size:.78rem;color:var(--t2);margin-bottom:.8rem;">Muscle : ${exo.m}</div>
+    <div class="replace-list">
+      ${allAlts.length?allAlts.map(alt=>`
+        <div class="replace-item" onclick="doReplaceExo(${ei},'${alt.replace(/'/g,"\\'")}');document.getElementById('replace-overlay').remove()">
+          <span>${alt}</span><span style="color:var(--accent);">→</span>
+        </div>`).join(''):`<div class="t-m" style="font-size:.82rem;">Aucune alternative configurée. Modifie l'exercice dans Config → Séances.</div>`}
+    </div>
+    <div style="margin-top:.8rem;">
+      <label style="font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--t2);display:block;margin-bottom:.3rem;">Ou saisis un exercice</label>
+      <div style="display:flex;gap:.5rem;">
+        <input type="text" id="custom-replace" placeholder="Nom de l'exercice…" style="flex:1;">
+        <button class="btn btn-p" onclick="const v=document.getElementById('custom-replace').value.trim();if(v){doReplaceExo(${ei},v);document.getElementById('replace-overlay').remove();}">OK</button>
+      </div>
+    </div>
+    <button class="btn btn-s btn-fw" style="margin-top:.7rem;" onclick="document.getElementById('replace-overlay').remove()">Annuler</button>
+  `;
+  overlay.appendChild(panel);
+  document.body.appendChild(overlay);
+}
+
+function doReplaceExo(ei, newNom){
+  if(!S._editSessions) S._editSessions=JSON.parse(JSON.stringify(getSessions()));
+  const si=S.sess.si||0;
+  S._editSessions[si].exos[ei].nom=newNom;
+  S.sessions=S._editSessions;
+  // Reset sets for this exercise
+  const ns=nSeries(S._editSessions[si].exos[ei],S.sess.w||1);
+  S.sess.sets[ei]=Array.from({length:ns},()=>({reps:'',charge:'',done:false}));
+  toast(`✅ Remplacé par : ${newNom}`);
+  seance();
+}
+
+// ── MID-SEANCE SUMMARY ──────────────────────────────────────────────
+function renderMidSummary(sess, w, refs){
+  const totalExos=sess.exos.length;
+  const doneExos=Object.entries(S.sess.sets).filter(([ei,sets])=>{
+    const ns=nSeries(sess.exos[+ei],w);
+    return sets.filter(s=>s.done).length>=ns;
+  }).length;
+  if(doneExos===0||doneExos<Math.floor(totalExos/2)) return '';
+  const totalVol=Object.entries(S.sess.sets).reduce((acc,[ei,sets])=>{
+    return acc+sets.filter(s=>s.done).reduce((a,s)=>a+(s.reps||0)*(s.charge||0),0);
+  },0);
+  const prs=Object.keys(S._newPRs||{}).length;
+  const elapsed=SessTimer.fmt();
+  return `<div class="mid-summary">
+    <div style="font-family:var(--fc);font-size:.9rem;font-weight:700;color:var(--accent);margin-bottom:.5rem;">
+      ${doneExos===totalExos?'🏁 Séance terminée !':'⚡ Mi-séance'}
+    </div>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <div class="spb-stat"><div class="spb-val" style="color:var(--accent);">${doneExos}/${totalExos}</div><div class="spb-lbl">Exercices</div></div>
+      <div class="spb-stat"><div class="spb-val">${Math.round(totalVol/100)/10}t</div><div class="spb-lbl">Volume</div></div>
+      <div class="spb-stat"><div class="spb-val" style="color:var(--accent);">${elapsed}</div><div class="spb-lbl">Durée</div></div>
+      ${prs?`<div class="spb-stat"><div class="spb-val" style="color:var(--yellow);">${prs}</div><div class="spb-lbl">PRs 🏅</div></div>`:''}
+    </div>
+  </div>`;
 }
 
 function adjCharge(ei,si,delta){
@@ -1790,6 +1954,7 @@ async function valS(ei,si,rest){
   const charge=+document.getElementById(`c-${ei}-${si}`)?.value||0;
   if(!reps||!charge){ toast('Renseigne les reps et la charge avant de valider.','warn'); return; }
   sets[si].reps=reps; sets[si].charge=charge; sets[si].done=!sets[si].done;
+  if(sets[si].rpe===undefined) sets[si].rpe=0;
   const refs=await DB.refs();
   const w=S.sess.w||C.weekOf((await DB.cfg()).startDate);
   const sess=getSessions()[S.sess.si||0];
@@ -1864,7 +2029,7 @@ async function saveSeance(){
     for(let ei=0;ei<sess.exos.length;ei++){
       const exo=sess.exos[ei];
       const sets=S.sess.sets[ei]||[];
-      const valid=sets.filter(s=>s.done&&s.reps>0&&s.charge>0);
+      const valid=sets.filter(s=>s.done&&s.reps>0&&s.charge>0).map(s=>({...s,rpe:s.rpe||0}));
       if(!valid.length) continue;
       const st=C.fromSets(valid);
       await DB.saveTLog({
@@ -2801,6 +2966,28 @@ async function seance(){
         <div class="obj-m"><span>×${obj.multi} charge</span><span>${obj.dr>=0?'+':''}${obj.dr} reps</span></div>
       </div>
       ${sess.echo?`<div class="alert a-info" style="font-size:.78rem;">🔥 <strong>Échauff :</strong> ${sess.echo}</div>`:''}
+      ${renderMidSummary(sess,selW,refs)}
+
+      <div class="sess-progress-banner">
+        <div class="spb-stat">
+          <div class="spb-val" style="color:var(--accent);">${doneExos}/${totalExos}</div>
+          <div class="spb-lbl">Exercices</div>
+        </div>
+        <div class="spb-stat">
+          <div class="spb-val">${Math.round(Object.values(S.sess.sets).reduce((a,sets)=>a+sets.filter(s=>s.done).reduce((b,s)=>b+(s.reps||0)*(s.charge||0),0),0)/100)/10}t</div>
+          <div class="spb-lbl">Volume</div>
+        </div>
+        <div class="spb-stat">
+          <div class="spb-val">${sess.exos.length-doneExos}</div>
+          <div class="spb-lbl">Restants</div>
+        </div>
+        <div class="spb-bar">
+          <div class="pbar"><div class="fill" style="width:${progPct}%;"></div></div>
+          <div style="font-size:.65rem;color:var(--t2);margin-top:.2rem;">~${Math.round((sess.exos.length-doneExos)*(sess.duree/sess.exos.length))} min restantes</div>
+        </div>
+        <button class="btn btn-s btn-sm" onclick="startCountdown(()=>{})" title="Compte à rebours 3-2-1">3-2-1</button>
+      </div>
+
       <div id="exo-list">
         ${sess.exos.map((exo,ei)=>renderExoCard(exo,ei,selW,refs,tLogs)).join('')}
       </div>
