@@ -3767,7 +3767,7 @@ async function suivi(){
         <div class="card-title">⚖️ Corps</div>
         <div class="fr fr2">
           <div class="fg"><label>Poids matin (kg)</label><input type="number" id="qpoids" value="${ex.poids||''}" step="0.1" min="30" max="300" placeholder="82.5" inputmode="decimal" oninput="triggerAutoSave()"></div>
-          <div class="fg"><label>Tour de taille (cm)</label><input type="number" inputmode="decimal" id="qtaille" value="${ex.tour_taille||''}" step="0. placeholder="optionnel"></div>
+          <div class="fg"><label>Tour de taille (cm)</label><input type="number" inputmode="decimal" id="qtaille" value="${ex.tour_taille||''}" step="0.5" min="50" max="150" placeholder="optionnel" oninput="triggerAutoSave()"></div>
           <div class="fg"><label>Pas</label><input type="number" id="qpas" value="${ex.pas||''}" step="100" min="0" max="100000" inputmode="numeric" oninput="triggerAutoSave()"></div>
           <div class="fg"><label>Eau (L)</label><input type="number" id="qeau" value="${ex.eau||''}" step="0.1" min="0" max="10" inputmode="decimal" oninput="triggerAutoSave()"></div>
         </div>
@@ -3990,13 +3990,13 @@ async function config(){
         <div class="card-title">⚙️ Configuration générale</div>
         <div class="fr fr2">
           <div class="fg"><label>Date de début</label><input type="date" id="ps" value="${cfg.startDate}"></div>
-          <div class="fg"><label>Poids initial (kg)</label><input type="number" inputmode="decimal" id="pp" value="${cfg.poids_initial||''}" step="0. min="30" max="300"></div>
+          <div class="fg"><label>Poids initial (kg)</label><input type="number" inputmode="decimal" id="pp" value="${cfg.poids_initial||''}" step="0.1" min="30" max="300"></div>
           <div class="fg"><label>Calories muscu (kcal)</label><input type="number" inputmode="numeric" id="pcm" value="${cfg.calories_muscu||2900}" step="50"></div>
           <div class="fg"><label>Calories repos (kcal)</label><input type="number" inputmode="numeric" id="pcr" value="${cfg.calories_repos||2550}" step="50"></div>
           <div class="fg"><label>Tolérance ±kcal</label><input type="number" inputmode="numeric" id="pct" value="${cfg.calories_tolerance||100}" step="25"></div>
           <div class="fg"><label>Protéines (g/j)</label><input type="number" inputmode="numeric" id="ppr" value="${cfg.proteines_cible||200}" step="5"></div>
           <div class="fg"><label>Pas / jour</label><input type="number" inputmode="numeric" id="ppa" value="${cfg.pas_cible||6000}" step="500"></div>
-          <div class="fg"><label>Eau cible (L/j)</label><input type="number" inputmode="decimal" id="peu" value="${cfg.eau_cible||2.8}" step="0.></div>
+          <div class="fg"><label>Eau cible (L/j)</label><input type="number" inputmode="decimal" id="peu" value="${cfg.eau_cible||2.8}" step="0.1" min="0" max="10"></div>
           <div class="fg"><label>Mode AUTO</label>
             <select id="pau">
               <option value="true" ${cfg.mode_auto?'selected':''}>Activé ✅</option>
@@ -4023,7 +4023,7 @@ async function config(){
               <td><strong>${exo}</strong></td>
               <td><span class="badge b-n">${sr?.m||'—'}</span></td>
               <td class="t-m">${sr?.reps||'—'}</td>
-              <td><input type="number" inputmode="decimal" id="rc_${k}" value="${r.charge||''}" step="0. min="0" style="width:85px;" placeholder="kg"></td>
+              <td><input type="number" inputmode="decimal" id="rc_${k}" value="${r.charge||''}" step="0.5" min="0" style="width:85px;" placeholder="kg"></td>
               <td><input type="number" inputmode="numeric" id="rr_${k}" value="${r.reps||''}" step="1" min="1" style="width:70px;" placeholder="reps"></td>
             </tr>`;
           }).join('')}
@@ -4235,7 +4235,7 @@ async function setup(){
         <div class="card">
           <div class="card-title">📅 Programme</div>
           <div class="fg mb2"><label>Date de début</label><input type="date" id="s1" value="${d.startDate||new Date().toISOString().slice(0,10)}"></div>
-          <div class="fg mb2"><label>Poids actuel (kg)</label><input type="number" inputmode="decimal" id="s2" value="${d.poids||''}" step="0. min="30" max="300" placeholder="82.5"></div>
+          <div class="fg mb2"><label>Poids actuel (kg)</label><input type="number" inputmode="decimal" id="s2" value="${d.poids||''}" step="0.1" min="30" max="300" placeholder="82.5"></div>
         </div>
       `:step===2?`
         <div class="card">
@@ -4257,7 +4257,7 @@ async function setup(){
               ${getAllExos().slice(0,15).map(exo=>{
                 const k=exo.replace(/[^a-zA-Z0-9]/g,'_');
                 return `<tr><td><strong>${exo}</strong></td>
-                  <td><input type="number" inputmode="decimal" id="rc_${k}" step="0. min="0" style="width:85px;" placeholder="kg"></td>
+                  <td><input type="number" inputmode="decimal" id="rc_${k}" step="0.5" min="0" style="width:85px;" placeholder="kg"></td>
                   <td><input type="number" inputmode="numeric" id="rr_${k}" step="1" min="1" style="width:70px;" placeholder="reps"></td></tr>`;
               }).join('')}
             </tbody>
@@ -4336,11 +4336,11 @@ async function _configObjectifs(cb,cfg){
       <p class="t-m" style="font-size:.82rem;margin-bottom:1rem;">Définis tes cibles pour suivre ta progression globale.</p>
       <div class="grid g2" style="gap:.8rem;">
         <div class="fg"><label>Poids cible (kg)</label>
-          <input type="number" inputmode="decimal" id="gw" value="${goals.poids||''}" step="0. min="30" max="300" placeholder="ex: 78"></div>
+          <input type="number" inputmode="decimal" id="gw" value="${goals.poids||''}" step="0.1" min="30" max="300" placeholder="ex: 78"></div>
         <div class="fg"><label>% Graisse cible</label>
-          <input type="number" inputmode="decimal" id="gbf" value="${goals.bf||''}" step="0. min="3" max="40" placeholder="ex: 12"></div>
+          <input type="number" inputmode="decimal" id="gbf" value="${goals.bf||''}" step="0.1" min="3" max="40" placeholder="ex: 12"></div>
         <div class="fg"><label>Tour de taille cible (cm)</label>
-          <input type="number" inputmode="decimal" id="gwt" value="${goals.taille||''}" step="0. min="50" max="150" placeholder="ex: 82"></div>
+          <input type="number" inputmode="decimal" id="gwt" value="${goals.taille||''}" step="0.5" min="50" max="150" placeholder="ex: 82"></div>
         <div class="fg"><label>1RM développé couché (kg)</label>
           <input type="number" inputmode="numeric" id="gbench" value="${goals.bench||''}" step="2.5" min="20" max="300" placeholder="ex: 120"></div>
         <div class="fg"><label>1RM squat (kg)</label>
