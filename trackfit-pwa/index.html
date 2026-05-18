@@ -74,7 +74,7 @@ body {
   font-family: var(--fb); font-size: 1rem;
   line-height: 1.5; min-height: 100vh;
   display: flex;
-  /* overflow-x: hidden removed — blocks pinch zoom on iOS */
+  overflow-x: clip; /* clip (not hidden) — doesn't block pinch zoom */
 }
 * { scrollbar-width: thin; scrollbar-color: var(--border2) transparent; }
 input, select, textarea, button { font-family: inherit; font-size: .9rem; }
@@ -108,6 +108,8 @@ label { display: block; font-size: .72rem; font-weight: 700; color: var(--t2);
   flex: 1; margin-left: var(--sidebar-w);
   padding: 1.5rem 1.6rem 2rem;
   min-height: 100vh; max-width: 1100px;
+  min-width: 0; /* critical: prevents flex children from overflowing */
+  overflow-x: hidden;
 }
 
 /* Sidebar logo */
@@ -184,13 +186,15 @@ label { display: block; font-size: .72rem; font-weight: 700; color: var(--t2);
 .ph {
   display: flex; justify-content: space-between; align-items: flex-start;
   margin-bottom: 1.2rem; gap: 1rem; flex-wrap: wrap;
+  min-width: 0; overflow: hidden;
 }
 .ph h1 {
   font-family: var(--fc); font-weight: 800; font-size: 1.9rem;
   line-height: 1.1; letter-spacing: .5px;
+  min-width: 0; overflow: hidden; text-overflow: ellipsis;
 }
 .ph .sub { font-size: .82rem; color: var(--t2); margin-top: .2rem; }
-.ph-actions { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+.ph-actions { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; flex-shrink: 0; }
 
 /* ═══════════════════════════════════════════════════════════
    CARDS
@@ -355,10 +359,65 @@ label { display: block; font-size: .72rem; font-weight: 700; color: var(--t2);
   padding: .18rem .45rem; font-size: .73rem; font-family: var(--fm); color: var(--t2); white-space: nowrap; }
 .chip.chip-c { color: var(--accent); border-color: rgba(0,230,118,.25); background: var(--accent-d); }
 .serie-grid { display: flex; flex-direction: column; gap: .3rem; margin: .5rem 0; }
-.serie-row { display: flex; align-items: center; gap: .5rem; padding: .35rem .4rem;
-  background: var(--s2); border-radius: var(--r3); border: 1px solid var(--border); }
+/* ── SERIE ROW — redesign mobile-first ── */
+.serie-row {
+  display: flex; align-items: center;
+  gap: .4rem; padding: .45rem .5rem;
+  background: var(--s2); border-radius: var(--r2);
+  border: 1px solid var(--border);
+  min-width: 0;
+}
 .serie-row.sr-done { border-color: rgba(0,230,118,.2); background: rgba(0,230,118,.04); }
-.sn { font-family: var(--fm); font-size: .7rem; color: var(--t3); min-width: 22px; }
+.sn {
+  font-family: var(--fm); font-size: .75rem; font-weight: 700;
+  min-width: 24px; flex-shrink: 0;
+  color: var(--t2);
+}
+.sn.done { color: var(--accent); }
+
+/* Reps section */
+.si-reps {
+  display: flex; align-items: center; gap: 2px;
+  flex-shrink: 0;
+}
+.si-reps input {
+  width: 52px; height: 44px; text-align: center;
+  font-size: 18px; font-weight: 700; padding: .2rem;
+}
+/* Charge section */
+.si-charge {
+  display: flex; align-items: center; gap: 2px;
+  flex: 1; min-width: 0;
+}
+.si-charge input {
+  flex: 1; min-width: 40px; height: 44px; text-align: center;
+  font-size: 18px; font-weight: 700; padding: .2rem;
+}
+.si-adj {
+  width: 36px; height: 44px; flex-shrink: 0;
+  background: var(--s3); border: 1px solid var(--border2);
+  color: var(--t1); font-size: 1.1rem; font-weight: 700;
+  border-radius: var(--r3); cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  touch-action: manipulation;
+}
+.si-adj:active { background: var(--accent); color: #000; }
+.si-adj.minus:active { background: var(--orange); }
+.si-sep { color: var(--t3); font-size: .8rem; flex-shrink: 0; padding: 0 2px; }
+.si-unit { color: var(--t3); font-size: .75rem; flex-shrink: 0; }
+
+/* Validate button */
+.s-btn {
+  width: 48px; height: 48px; flex-shrink: 0;
+  background: var(--s3); border: 1px solid var(--border2); color: var(--t2);
+  border-radius: var(--r2); cursor: pointer; font-size: 1.15rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .15s; touch-action: manipulation;
+}
+.s-btn:hover, .s-btn:active { background: var(--accent); color: #000; border-color: var(--accent); }
+.s-btn.validated { background: var(--accent); color: #000; border-color: var(--accent); }
+
+/* Old compat */
 .s-inp { display: flex; gap: .35rem; flex: 1; }
 .s-inp input { text-align: center; padding: .3rem .4rem; font-size: .9rem; }
 .s-btn {
@@ -382,8 +441,9 @@ label { display: block; font-size: .72rem; font-weight: 700; color: var(--t2);
 .sess-sticky {
   position: sticky; top: 0; z-index: 50; background: rgba(7,9,13,.92);
   backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
-  padding: .55rem 1rem; display: flex; align-items: center; gap: .7rem;
+  padding: .55rem 1rem; display: flex; align-items: center; gap: .5rem;
   flex-wrap: wrap; margin: -1.5rem -1.6rem 1rem; font-size: .82rem;
+  overflow-x: auto; overflow-y: hidden;
 }
 .sess-sticky-name { font-family: var(--fc); font-weight: 700; font-size: 1rem; color: var(--t1); flex: 1; }
 .sess-sticky-info { color: var(--t2); display: flex; gap: .7rem; flex-wrap: wrap; align-items: center; }
@@ -436,6 +496,10 @@ tr:hover td { background: var(--s2); }
 .fr2 { grid-template-columns: repeat(2, 1fr); }
 .fr3 { grid-template-columns: repeat(3, 1fr); }
 .fr4 { grid-template-columns: repeat(4, 1fr); }
+/* Prevent grid/flex children from overflowing */
+.grid > *, .fr > *, .g2 > *, .g3 > *, .g4 > *,
+.fr2 > *, .fr3 > *, .fr4 > * { min-width: 0; overflow: hidden; }
+.card { min-width: 0; overflow: hidden; }
 .fg { display: flex; flex-direction: column; }
 .empty { display: flex; flex-direction: column; align-items: center;
   justify-content: center; padding: 3rem 1rem; text-align: center; color: var(--t2); }
@@ -837,6 +901,123 @@ button, a, .btn, .tab, .bn-item, .sb-item,
   opacity: 0; transition: opacity .3s;
 }
 .zoom-indicator.show { opacity: 1; }
+
+
+/* ── MOBILE LAYOUT FIXES ── */
+@media(max-width:640px){
+  /* Prevent ALL horizontal overflow */
+  #main { overflow-x: hidden !important; }
+  #app, #zoom-wrapper { max-width: 100%; overflow-x: hidden; }
+
+  /* Cards ne débordent pas */
+  .card, .sc, .hero-card, .obj-banner, .alert,
+  .exo-card, .warmup-section, .exo-hist, .repas-section {
+    overflow: hidden; min-width: 0;
+  }
+
+  /* Headings ne débordent pas */
+  .ph h1 { font-size: 1.6rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* Grid 2 colonnes : on réduit sur très petit écran */
+  .fr2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fr3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  /* Inputs ne forcent pas de largeur min */
+  input, select { min-width: 0; }
+
+  /* Labels ne débordent pas */
+  label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* Série row optimisée pour iPhone */
+  .serie-row { gap: .3rem; padding: .4rem .45rem; }
+  .si-reps input { width: 46px; font-size: 17px; height: 42px; }
+  .si-charge input { min-width: 36px; font-size: 17px; height: 42px; }
+  .si-adj { width: 34px; height: 42px; font-size: 1rem; }
+  .s-btn { width: 44px !important; height: 44px !important; font-size: 1.1rem !important; }
+  .sn { font-size: .7rem; min-width: 20px; }
+
+  /* Sticky séance */
+  .sess-sticky {
+    margin: -.75rem -.75rem .6rem;
+    padding: .4rem .6rem;
+    overflow-x: auto; overflow-y: hidden;
+    flex-wrap: nowrap;
+  }
+  .sess-sticky > * { flex-shrink: 0; }
+
+  /* Tabs */
+  .tabs { overflow-x: auto; flex-wrap: nowrap; }
+  .tab { flex-shrink: 0; }
+
+  /* Tables */
+  .tbl-wrap { overflow-x: auto; max-width: 100%; }
+  table { min-width: 0; width: 100%; }
+  th, td { white-space: normal; font-size: .72rem; padding: .35rem .4rem; }
+
+  /* Charts */
+  canvas { max-width: 100%; }
+
+  /* Quick log bar */
+  .quick-log-bar { overflow-x: auto; flex-wrap: nowrap; }
+  .ql-btn { flex-shrink: 0; }
+
+  /* Page header */
+  .ph { margin-bottom: .7rem; }
+  .ph-actions { flex-wrap: wrap; gap: .4rem; }
+
+  /* Metric row — 2 cols */
+  .metric-row { grid-template-columns: repeat(2,1fr); gap: .4rem; }
+  .metric-val { font-size: 1.4rem; }
+  .metric-label { font-size: .6rem; }
+
+  /* Bottom nav bar */
+  #bottom-nav { padding-bottom: env(safe-area-inset-bottom, 0px); }
+  #main { padding-bottom: calc(var(--bottomnav-h) + env(safe-area-inset-bottom, 8px) + .75rem) !important; }
+
+  /* Bannière progression séance */
+  .sess-progress-banner { flex-wrap: wrap; gap: .5rem; }
+  .spb-bar { flex: none; width: 100%; }
+
+  /* Exo card */
+  .exo-card { padding: .6rem .7rem; }
+  .exo-name { font-size: .9rem; line-height: 1.3; }
+  .exo-meta { gap: .2rem; font-size: .65rem; }
+
+  /* Replace overlay */
+  .replace-list { max-height: 250px; }
+}
+
+/* ── TRÈS PETITS ÉCRANS (≤375px) ── */
+@media(max-width:375px){
+  .si-reps input { width: 40px; font-size: 16px; }
+  .si-adj { width: 30px; }
+  .s-btn { width: 40px !important; height: 40px !important; }
+  .metric-val { font-size: 1.2rem; }
+  .tab { font-size: .72rem; padding: .4rem .55rem; }
+}
+
+/* ── SAFARI BROWSER (pas standalone) — barre URL en bas ── */
+@media(max-width:640px){
+  /* La barre Safari prend ~90px en bas, #main doit le compenser */
+  #main { padding-bottom: calc(var(--bottomnav-h) + 90px) !important; }
+}
+
+
+/* ── CONFIG FORM FIXES ── */
+.config-form .fr2, .fr.fr2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.fg { min-width: 0; overflow: hidden; }
+.fg label { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fg input, .fg select, .fg textarea { max-width: 100%; box-sizing: border-box; }
+
+/* ── ANALYSE TABS OVERFLOW ── */
+.tabs { -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+
+/* ── SESSION SELECTOR in sticky header ── */
+.sess-sticky select { max-width: 100px; font-size: .72rem; padding: .15rem .2rem; min-width: 0; }
+.sess-sticky-name { font-size: .85rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex-shrink: 1; max-width: 120px; }
 
 </style>
 </head>
@@ -1711,49 +1892,52 @@ function renderExoCard(exo,ei,w,refs,tLogs){
       <div class="serie-grid">
         ${sets.map((s,si)=>{
           const isNext=!s.done&&sets.slice(0,si).every(x=>x.done);
+          const rVal=s.reps||'';
+          const cVal=s.charge!==''?s.charge:'';
           return `
-          <div class="serie-row ${s.done?'sr-done':''} ${isNext?'serie-next':''}" id="sr-${ei}-${si}">
-            <span class="sn" style="font-size:.85rem;font-weight:700;color:${s.done?'var(--accent)':'var(--t2)'};">S${si+1}</span>
+          <div class="serie-row ${s.done?'sr-done':''}" id="sr-${ei}-${si}">
+            <span class="sn ${s.done?'done':''}">S${si+1}</span>
 
-            <div class="reps-input-wrap">
-              <div class="reps-val">${s.reps||'—'}</div>
-              <input type="number" inputmode="numeric" pattern="[0-9]*" id="r-${ei}-${si}"
-                value="${s.reps||''}" placeholder="${rt||'?'}"
-                min="1" max="50" step="1"
+            <div class="si-reps">
+              <input type="number" inputmode="numeric" pattern="[0-9]*"
+                id="r-${ei}-${si}" value="${rVal}"
+                placeholder="${rt||'?'}" min="1" max="50" step="1"
                 onfocus="this.select()"
-                oninput="upS(${ei},${si},'reps',+this.value);this.previousElementSibling.textContent=this.value||'—'"
-                style="font-size:18px;text-align:center;height:44px;padding:.3rem;">
+                oninput="upS(${ei},${si},'reps',+this.value)">
             </div>
 
-            <div class="charge-input-wrap">
-              <div class="charge-val">${s.charge||ct||lastCharge||'—'}<span style="font-size:.65rem;color:var(--t3);">kg</span></div>
-              <div class="charge-btns" style="width:100%;">
-                <button class="charge-btn minus" onclick="adjCharge(${ei},${si},-2.5)" title="-2.5kg">−</button>
-                <input type="number" inputmode="decimal" id="c-${ei}-${si}"
-                  value="${s.charge!==''?s.charge:''}" placeholder="${ct||lastCharge||'kg'}"
-                  min="0" max="500" step="0.5"
-                  onfocus="this.select()"
-                  oninput="upS(${ei},${si},'charge',+this.value);this.closest('.charge-input-wrap').querySelector('.charge-val').innerHTML=(this.value||'${ct||lastCharge||'—'}')+'<span style=\'font-size:.65rem;color:var(--t3);\'>kg</span>'"
-                  style="font-size:18px;text-align:center;height:44px;padding:.3rem;min-width:60px;flex:1;">
-                <button class="charge-btn" onclick="adjCharge(${ei},${si},2.5)" title="+2.5kg">+</button>
-              </div>
-            </div>
+            <span class="si-sep">×</span>
 
-            <button class="s-btn ${s.done?'validated':''}" onclick="valS(${ei},${si},${exo.rest})" title="Valider">
+            <div class="si-charge">
+              <button class="si-adj minus" onclick="adjCharge(${ei},${si},-2.5)">−</button>
+              <input type="number" inputmode="decimal"
+                id="c-${ei}-${si}" value="${cVal}"
+                placeholder="${ct||lastCharge||'kg'}"
+                min="0" max="500" step="0.5"
+                onfocus="this.select()"
+                oninput="upS(${ei},${si},'charge',+this.value)">
+              <button class="si-adj" onclick="adjCharge(${ei},${si},2.5)">+</button>
+            </div>
+            <span class="si-unit">kg</span>
+
+            <button class="s-btn ${s.done?'validated':''}"
+              onclick="valS(${ei},${si},${exo.rest})" title="Valider">
               ${s.done?'✓':'›'}
             </button>
           </div>
-          ${s.done?`<div id="rpe-${ei}-${si}" style="margin:.2rem 0 0 28px;">${renderSerieRPE(ei,si)}</div>`:''}
+
+          ${s.done?`<div id="rpe-${ei}-${si}" style="margin:.2rem 0 .3rem 28px;">${renderSerieRPE(ei,si)}</div>`:''}
           ${(()=>{
-            if(!s.done) return isNext&&!s.done?'<div class="next-series-indicator">▼ Série suivante</div>':'';
+            if(!s.done) return isNext?'<div class="next-series-indicator">▼ Série suivante</div>':'';
             const ll=[...tLogs.filter(l=>l.exercice===exo.nom&&l.series?.length)].sort((a,b)=>b.date.localeCompare(a.date))[0];
             const ls=ll?.series?.[si];
             if(!ls) return '';
-            const cd=s.charge-(ls.charge||0);const rd=s.reps-(ls.reps||0);
+            const cd=(+s.charge||0)-(+ls.charge||0);
+            const rd=(+s.reps||0)-(+ls.reps||0);
             const cls=cd>0||rd>0?'cmp-up':cd<0||rd<0?'cmp-down':'cmp-eq';
-            return `<div style="margin:.15rem 0 0 28px;"><span class="cmp-badge ${cls}">${cd>0?'+':''}${cd}kg ${rd>0?'+':''}${rd}r vs S-1</span></div>`;
+            return `<div style="margin:0 0 .3rem 28px;"><span class="cmp-badge ${cls}">${cd>0?'+':''}${cd}kg ${rd>0?'+':''}${rd}r vs S-1</span></div>`;
           })()}
-        `}).join('')}
+          `}).join('')}
       </div>
       <div class="exo-rest-wrap">
         <div id="exo-rest-${ei}" data-rest="${exo.rest}">
@@ -1874,15 +2058,9 @@ function adjCharge(ei,si,delta){
   const input=document.getElementById(`c-${ei}-${si}`);
   if(!input) return;
   const cur=parseFloat(input.value)||S.sess.sets[ei]?.[si]?.charge||0;
-  const newVal=Math.max(0,Math.round((cur+delta)*2)/2); // round to 0.5
+  const newVal=Math.max(0,Math.round((cur+delta)*2)/2);
   input.value=newVal;
   upS(ei,si,'charge',newVal);
-  // Update display
-  const wrap=input.closest('.charge-input-wrap');
-  if(wrap){
-    const disp=wrap.querySelector('.charge-val');
-    if(disp) disp.innerHTML=newVal+'<span style="font-size:.65rem;color:var(--t3);">kg</span>';
-  }
   haptic([20]);
 }
 
@@ -1924,21 +2102,18 @@ async function valS(ei,si,rest){
     ExoTimers.start(ei, restSecs);
     // Auto-scroll to next incomplete series or next exercise
     setTimeout(()=>{
-      // Find next incomplete series in same exercise
       const nextSr=document.getElementById(`sr-${ei}-${si+1}`);
       if(nextSr){
-        nextSr.scrollIntoView({behavior:'smooth',block:'center'});
-        // Auto-focus reps input of next series
-        setTimeout(()=>{ document.getElementById(`r-${ei}-${si+1}`)?.focus(); },300);
+        nextSr.scrollIntoView({behavior:'smooth',block:'nearest'});
+        setTimeout(()=>{ document.getElementById(`r-${ei}-${si+1}`)?.focus(); },350);
       } else {
-        // All series done — scroll to next exercise
         const nextExo=document.getElementById(`ec-${ei+1}`);
         if(nextExo){
           nextExo.scrollIntoView({behavior:'smooth',block:'start'});
-          setTimeout(()=>{ document.getElementById(`r-${ei+1}-0`)?.focus(); },300);
+          setTimeout(()=>{ document.getElementById(`r-${ei+1}-0`)?.focus(); },350);
         }
       }
-    },150);
+    },200);
   } else {
     ExoTimers.reset(ei, sess.exos[ei].rest||90);
   }
