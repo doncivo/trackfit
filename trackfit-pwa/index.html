@@ -67,14 +67,25 @@
 /* ═══════════════════════════════════════════════════════════
    RESET & BASE
 ═══════════════════════════════════════════════════════════ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 15px; -webkit-text-size-adjust: 100%; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0; padding: 0;
+  max-width: 100%;        /* aucun élément ne dépasse l'écran */
+  min-width: 0;           /* les flex/grid enfants ne débordent jamais */
+}
+html {
+  font-size: 15px;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;     /* niveau racine */
+  width: 100%;
+}
 body {
   background: var(--bg); color: var(--t1);
   font-family: var(--fb); font-size: 1rem;
   line-height: 1.5; min-height: 100vh;
-  display: flex;
-  overflow-x: clip; /* clip (not hidden) — doesn't block pinch zoom */
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 * { scrollbar-width: thin; scrollbar-color: var(--border2) transparent; }
 input, select, textarea, button { font-family: inherit; font-size: .9rem; }
@@ -82,6 +93,8 @@ input, select, textarea {
   background: var(--s3); border: 1px solid var(--border2);
   color: var(--t1); border-radius: var(--r3);
   padding: .45rem .65rem; width: 100%;
+  min-width: 0;
+  max-width: 100%;
   transition: border-color .15s;
 }
 input:focus, select:focus, textarea:focus {
@@ -102,14 +115,17 @@ label { display: block; font-size: .72rem; font-weight: 700; color: var(--t2);
   background: var(--s1); border-right: 1px solid var(--border);
   display: flex; flex-direction: column;
   position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
-  overflow-y: auto;
+  overflow-y: auto; overflow-x: hidden;
 }
 #main {
-  flex: 1; margin-left: var(--sidebar-w);
+  display: block;
+  margin-left: var(--sidebar-w);   /* poussé à droite de la sidebar */
   padding: 1.5rem 1.6rem 2rem;
-  min-height: 100vh; max-width: 1100px;
-  min-width: 0; /* critical: prevents flex children from overflowing */
+  min-height: 100vh;
+  max-width: 1100px;
+  width: calc(100% - var(--sidebar-w));  /* toujours dans l'écran */
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Sidebar logo */
@@ -262,7 +278,7 @@ label { display: block; font-size: .72rem; font-weight: 700; color: var(--t2);
    METRIC ROW
 ═══════════════════════════════════════════════════════════ */
 .metric-row {
-  display: grid; grid-template-columns: repeat(4,1fr);
+  display: grid; grid-template-columns: repeat(4, minmax(0,1fr));
   gap: .6rem; margin-bottom: 1rem;
 }
 .metric {
@@ -489,13 +505,13 @@ tr:hover td { background: var(--s2); }
    GRIDS & LAYOUT HELPERS
 ═══════════════════════════════════════════════════════════ */
 .grid { display: grid; gap: .9rem; }
-.g2 { grid-template-columns: repeat(2, 1fr); }
-.g3 { grid-template-columns: repeat(3, 1fr); }
-.g4 { grid-template-columns: repeat(4, 1fr); }
+.g2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.g4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
 .fr { display: grid; gap: .6rem; }
-.fr2 { grid-template-columns: repeat(2, 1fr); }
-.fr3 { grid-template-columns: repeat(3, 1fr); }
-.fr4 { grid-template-columns: repeat(4, 1fr); }
+.fr2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.fr3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.fr4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
 /* Prevent grid/flex children from overflowing */
 .grid > *, .fr > *, .g2 > *, .g3 > *, .g4 > *,
 .fr2 > *, .fr3 > *, .fr4 > * { min-width: 0; overflow: hidden; }
@@ -637,17 +653,17 @@ html { font-size: var(--fz-base); }
 /* ── Desktop large (>1200px) ── */
 @media(min-width:1200px){
   #main { max-width: 1200px; padding: 2rem 2.5rem; }
-  .grid.g2 { grid-template-columns: repeat(2,1fr); }
-  .grid.g4 { grid-template-columns: repeat(4,1fr); }
-  .metric-row { grid-template-columns: repeat(4,1fr); }
+  .grid.g2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .grid.g4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+  .metric-row { grid-template-columns: repeat(4, minmax(0,1fr)); }
   .sc-val { font-size: 2.2rem; }
   .card { padding: 1.2rem 1.4rem; }
 }
 
 /* ── Desktop medium (900–1200px) ── */
 @media(min-width:900px) and (max-width:1199px){
-  .grid.g4 { grid-template-columns: repeat(2,1fr); }
-  .metric-row { grid-template-columns: repeat(4,1fr); }
+  .grid.g4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .metric-row { grid-template-columns: repeat(4, minmax(0,1fr)); }
 }
 
 /* ── Tablet portrait / large phone (641–900px) ── */
@@ -661,9 +677,9 @@ html { font-size: var(--fz-base); }
   .sb-item { justify-content: center; padding: .7rem; }
   .sb-item .sb-badge-dot { right: 6px; top: 6px; }
   #main { padding: 1rem 1.1rem; }
-  .grid.g4 { grid-template-columns: repeat(2,1fr); }
-  .metric-row { grid-template-columns: repeat(4,1fr); }
-  .fr4 { grid-template-columns: repeat(2,1fr); }
+  .grid.g4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .metric-row { grid-template-columns: repeat(4, minmax(0,1fr)); }
+  .fr4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
 
 /* ── Mobile (≤640px) ── */
@@ -672,7 +688,7 @@ html { font-size: var(--fz-base); }
   :root { --fz-base: 15px; }
 
   /* 2-column metric row fits nicely */
-  .metric-row { grid-template-columns: repeat(2,1fr); gap: .5rem; }
+  .metric-row { grid-template-columns: repeat(2, minmax(0,1fr)); gap: .5rem; }
   .metric-val { font-size: 1.6rem; }
 
   /* Larger serie inputs — more room */
@@ -697,8 +713,8 @@ html { font-size: var(--fz-base); }
   .hero-exo-row { font-size: .82rem; padding: .25rem 0; }
 
   /* 2-col grids work well at 430px */
-  .grid.g2 { grid-template-columns: repeat(2,1fr) !important; }
-  .fr2 { grid-template-columns: repeat(2,1fr) !important; }
+  .grid.g2 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  .fr2 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
 }
 
 @media(max-width:640px){
@@ -706,11 +722,14 @@ html { font-size: var(--fz-base); }
     --sidebar-w: 0px;
     --r: 12px; --r2: 8px;
   }
-  #sidebar { display: none; }
+  #sidebar { display: none !important; }
   #bottom-nav { display: flex; }
   #main {
-    margin-left: 0;
-    padding: .75rem .75rem calc(var(--bottomnav-h) + var(--safe-bot) + .75rem);
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: .75rem .75rem calc(var(--bottomnav-h) + 8px + .75rem);
+    overflow-x: hidden !important;
   }
 
   /* Grids → single column */
@@ -719,7 +738,7 @@ html { font-size: var(--fz-base); }
   .fr4 { grid-template-columns: 1fr 1fr; }
 
   /* Metric row stays 2×2 */
-  .metric-row { grid-template-columns: repeat(2,1fr); gap: .4rem; }
+  .metric-row { grid-template-columns: repeat(2, minmax(0,1fr)); gap: .4rem; }
   .metric { padding: .5rem .55rem; }
   .metric-val { font-size: 1.3rem; }
   .metric-label { font-size: .58rem; }
@@ -872,11 +891,11 @@ html { font-size: var(--fz-base); }
   .sb-logo-title span { display: inline; }
   .sb-group { display: block; }
   .sb-item span:not(.sb-icon) { display: inline; }
-  .metric-row { grid-template-columns: repeat(4,1fr); }
-  .grid.g2 { grid-template-columns: repeat(2,1fr); }
-  .fr2 { grid-template-columns: repeat(2,1fr); }
-  .fr3 { grid-template-columns: repeat(3,1fr); }
-  .fr4 { grid-template-columns: repeat(4,1fr); }
+  .metric-row { grid-template-columns: repeat(4, minmax(0,1fr)); }
+  .grid.g2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .fr2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .fr3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .fr4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
 }
 
 /* ── Touch Actions ── */
@@ -889,7 +908,9 @@ button, a, .btn, .tab, .bn-item, .sb-item,
 #zoom-wrapper {
   transform-origin: 0 0;
   width: 100%;
+  max-width: 100%;
   will-change: transform;
+  overflow-x: hidden;
 }
 .zoom-indicator {
   position: fixed; bottom: calc(var(--bottomnav-h) + var(--safe-bot) + 8px);
@@ -966,7 +987,7 @@ button, a, .btn, .tab, .bn-item, .sb-item,
   .ph-actions { flex-wrap: wrap; gap: .4rem; }
 
   /* Metric row — 2 cols */
-  .metric-row { grid-template-columns: repeat(2,1fr); gap: .4rem; }
+  .metric-row { grid-template-columns: repeat(2, minmax(0,1fr)); gap: .4rem; }
   .metric-val { font-size: 1.4rem; }
   .metric-label { font-size: .6rem; }
 
@@ -1018,6 +1039,134 @@ button, a, .btn, .tab, .bn-item, .sb-item,
 /* ── SESSION SELECTOR in sticky header ── */
 .sess-sticky select { max-width: 100px; font-size: .72rem; padding: .15rem .2rem; min-width: 0; }
 .sess-sticky-name { font-size: .85rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex-shrink: 1; max-width: 120px; }
+
+
+/* ═══════════════════════════════════════════════════════════
+   RESET UNIVERSEL MOBILE — appliqué EN DERNIER (priorité max)
+═══════════════════════════════════════════════════════════ */
+@media screen {
+  /* Tout élément reste dans son conteneur */
+  img, video, canvas, svg, iframe { max-width: 100%; display: block; }
+  table { table-layout: fixed; width: 100%; }
+  th, td { word-break: break-word; overflow-wrap: break-word; }
+}
+
+@media(max-width:640px){
+  /* LAYOUT ROOT */
+  html, body { width: 100%; overflow-x: hidden !important; }
+  #main, #app, #zoom-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* TOUTES LES CARTES */
+  .card, .sc, .hero-card, .obj-banner, .alert, .badge,
+  .exo-card, .repas-section, .exo-hist, .warmup-section,
+  .modal, .feedback-card { overflow: hidden; }
+
+  /* GRILLES FORCÉES */
+  .grid, .fr, .g2, .g3, .g4, .fr2, .fr3, .fr4,
+  .metric-row { overflow: hidden; }
+  .grid > *, .fr > *, .g2 > *, .g3 > *, .g4 > *,
+  .fr2 > *, .fr3 > *, .fr4 > *, .metric-row > * {
+    min-width: 0 !important;
+    overflow: hidden;
+  }
+
+  /* TEXTES */
+  .card-title, .sc-label, .exo-name, .hero-card-title,
+  .obj-d, .obj-w {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ph h1 {
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* FORMULAIRES */
+  input, select, textarea, button {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    display: block;
+  }
+
+  /* SÉANCE STICKY */
+  .sess-sticky {
+    overflow-x: auto;
+    overflow-y: visible;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: -.75rem -.75rem .6rem;
+    padding: .4rem .6rem;
+    width: calc(100% + 1.5rem);
+  }
+  .sess-sticky::-webkit-scrollbar { display: none; }
+  .sess-sticky > * { flex-shrink: 0; }
+  .sess-sticky-name {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* TABS */
+  .tabs {
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex-shrink: 0 !important; white-space: nowrap; }
+
+  /* TABLEAUX */
+  .tbl-wrap { overflow-x: auto; max-width: 100%; }
+  table { min-width: 0; width: 100%; table-layout: auto; }
+
+  /* BOTTOM NAV — au-dessus de la barre Safari */
+  #bottom-nav {
+    position: fixed;
+    bottom: 0;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    z-index: 200;
+  }
+  #main {
+    padding-bottom: calc(
+      var(--bottomnav-h)
+      + env(safe-area-inset-bottom, 0px)
+      + .75rem
+    ) !important;
+  }
+
+  /* SÉRIE ROW */
+  .serie-row {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    overflow: visible !important;
+    gap: .3rem !important;
+    padding: .4rem .45rem !important;
+  }
+  .si-reps { display: flex; align-items: center; flex-shrink: 0; }
+  .si-reps input { width: 48px !important; min-width: 0 !important; }
+  .si-charge { display: flex; align-items: center; flex: 1; min-width: 0; }
+  .si-charge input { flex: 1; min-width: 30px !important; }
+  .si-adj { flex-shrink: 0 !important; }
+  .si-unit, .si-sep { flex-shrink: 0; }
+  .s-btn { flex-shrink: 0 !important; }
+}
 
 </style>
 </head>
